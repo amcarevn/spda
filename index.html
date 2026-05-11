@@ -15,7 +15,6 @@
 
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" />
 
   <style>
     /* ===== RESET & BASE ===== */
@@ -873,8 +872,8 @@
       font-size: .7rem; font-weight: 700; display: inline-block;
     }
 
-    /* ===== ICONS (global fallback) ===== */
-    i { color: var(--accent-dk); }
+    /* ===== ICONS (Font Awesome fallback color) ===== */
+    [class^="fa-"], [class*=" fa-"] { color: var(--accent-dk); }
 
     /* ===== LANGUAGE SWITCH ===== */
     [data-lang="en"] { display: none; }
@@ -1010,7 +1009,7 @@
             <span data-lang="fil">Nasubok sa Klinikal</span>
             <span data-lang="en">Clinically Tested</span>
           </div><span class="trust-sep" aria-hidden="true">·</span>
-          <div class="trust-item"><i class="fas fa-leaf"></i>
+          <div class="trust-item"><i class="fas fa-sparkles"></i>
             <span data-lang="fil">Walang Paraben · Walang Alkohol</span>
             <span data-lang="en">Paraben-free · Alcohol-free</span>
           </div>
