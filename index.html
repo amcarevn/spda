@@ -46,6 +46,7 @@
       --r-sm: 6px; --r-md: 14px; --r-lg: 28px; --r-xl: 99px;
       --container-padding-inline: clamp(16px, 4vw, 48px);
       --section-space: clamp(72px, 9vw, 120px);
+      --retail-card-mobile-offset: 34px;
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -1127,8 +1128,10 @@
       .formula-cell:nth-child(4), .formula-cell:nth-child(5) { border-top: 1px solid var(--cream-warm); }
     }
     @media (max-width: 900px) {
-      .container { padding: 0 clamp(16px, 4.5vw, 28px); }
-      section { padding: clamp(60px, 10vw, 88px) 0; }
+      :root {
+        --container-padding-inline: 24px;
+        --section-space: clamp(60px, 10vw, 88px);
+      }
       .hero-grid { grid-template-columns: 1fr; }
       .hero-desc { margin-inline: auto; max-width: 520px; }
       .hero-content { text-align: center; }
@@ -1158,15 +1161,16 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-      :root { --retail-card-mobile-offset: 34px; /* keep a small next-card peek for swipe affordance */ }
-      .container { padding: 0 clamp(14px, 5vw, 20px); }
-      section { padding: clamp(48px, 12vw, 66px) 0; }
+      :root {
+        --container-padding-inline: 16px;
+        --section-space: clamp(48px, 12vw, 66px);
+      }
       .pain-cards { grid-template-columns: 1fr; }
       #navbar {
-        padding: 14px clamp(14px, 5vw, 20px);
+        padding: 14px var(--container-padding-inline);
       }
       #navbar.scrolled {
-        padding: 10px clamp(14px, 5vw, 20px);
+        padding: 10px var(--container-padding-inline);
       }
       .nav-cta {
         padding: 11px 16px;
@@ -1209,7 +1213,7 @@
       }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
       .retail-card {
-        flex: 0 0 calc(100% - var(--retail-card-mobile-offset));
+        flex: 0 0 calc(100% - var(--retail-card-mobile-offset, 34px));
         min-height: 0;
       }
       .retail-card-name {
