@@ -658,6 +658,10 @@
       border-radius: 34px;
       padding: clamp(24px, 3.8vw, 38px);
       position: relative;
+      display: grid;
+      grid-template-columns: minmax(320px, 1.05fr) minmax(280px, 1fr);
+      gap: clamp(20px, 3vw, 34px);
+      align-items: stretch;
       border: 1px solid rgba(201,164,106,.62);
       box-shadow: 0 0 0 1px rgba(201,164,106,.38), 0 0 48px rgba(201,164,106,.26), 0 28px 56px rgba(63,58,51,.12);
       backdrop-filter: blur(12px);
@@ -673,17 +677,18 @@
     }
     .combo-card > * { position: relative; z-index: 1; }
 
-    /* Product image placeholder at top of combo card */
+    /* Product image on left side of combo card */
     .combo-product-img {
-      height: 178px;
+      height: 100%;
+      min-height: 360px;
       background: linear-gradient(150deg, rgba(239,227,207,.95) 0%, rgba(201,164,106,.2) 45%, rgba(156,175,136,.22) 100%);
       border-radius: 20px;
-      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
+      padding: 18px;
     }
     .combo-product-img::before {
       content: '';
@@ -693,14 +698,21 @@
       border-radius: 20px;
       pointer-events: none;
     }
-    .combo-product-img svg {
-      width: 56px; height: 56px;
-      opacity: .2;
-      color: #3f3a33;
+    .combo-product-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .combo-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .combo-best {
+    .combo-badge {
       position: absolute;
+      grid-column: 1 / -1;
       top: -14px;
       right: 18px;
       background: linear-gradient(135deg, #c9a46a, #9caf88);
@@ -715,6 +727,7 @@
     }
     .combo-save-badge {
       position: absolute;
+      grid-column: 1 / -1;
       top: 22px;
       left: -12px;
       background: rgba(255,255,255,.85);
@@ -1022,6 +1035,12 @@
       .formula-cell:last-child { border-bottom: none; }
       .formula-cell:nth-child(3) { border-right: none; }
       .routine-card { grid-template-columns: 1fr; }
+      .combo-card {
+        grid-template-columns: 1fr;
+      }
+      .combo-product-img {
+        min-height: 280px;
+      }
       .results-track { grid-template-columns: 1fr; }
       .register-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1326,39 +1345,36 @@
 
       <!-- BOTTOM: Combo Spotlight frame -->
       <div class="combo-card reveal reveal-delay-1">
-        <div class="combo-best">Combo spotlight</div>
-        <div class="combo-save-badge">SAVE ~19%</div>
+        <div class="combo-badge">Bộ 5 bước</div>
+        <div class="combo-save-badge">Tiết kiệm 19%</div>
 
-        <!-- Full-set product image placeholder -->
-        <div class="combo-product-img" aria-hidden="true">
-          <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="14" height="32" rx="4"/><rect x="24" y="10" width="14" height="36" rx="4"/><rect x="42" y="8" width="14" height="38" rx="4"/><rect x="60" y="12" width="14" height="34" rx="4"/><path d="M33 5h8v4h-8z"/></svg>
+        <div class="combo-product-img">
+          <img src="./full-6.jpeg" alt="Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW" class="combo-product-photo" />
         </div>
 
-        <div class="combo-eyebrow">Luxury complete ritual</div>
-        <h3 class="combo-title">LUMI-GLOW<br>Complete Glow Set</h3>
-        <p class="combo-sub" data-i18n="comboSub">The perfect 5-step formula for your premium glow &amp; anti-aging journey.</p>
-        <div class="combo-price-row">
-          <span class="combo-price-strike" data-i18n="comboStrike">Retail total 3,450,000đ</span>
-          <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+        <div class="combo-content">
+          <div class="combo-eyebrow">Giá trọn bộ nghi lễ</div>
+          <h3 class="combo-title">Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW</h3>
+          <p class="combo-sub">Nghi thức chăm sóc da trọn vẹn cho làn da rạng rỡ và tươi trẻ.</p>
+          <div class="combo-price-row">
+            <span class="combo-price-strike">3.450.000đ</span>
+            <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+          </div>
+          <div class="combo-chips">
+            <span class="combo-chip">5 bước hoàn chỉnh</span>
+          </div>
+          <div class="combo-btns">
+            <button type="button" class="btn-combo-primary open-order">
+              <i class="fas fa-sparkles"></i> <span data-i18n="comboBtn1">Own the Complete Set</span>
+            </button>
+            <a href="#register" class="btn-combo-secondary">
+              <i class="fas fa-arrow-right"></i> <span data-i18n="comboBtn2">Start Your Glow Journey</span>
+            </a>
+          </div>
+          <p class="combo-guarantee">
+            <i class="fas fa-lock"></i> <span data-i18n="comboGuarantee">Best value · Premium experience · Personalized consultation</span>
+          </p>
         </div>
-        <div class="combo-chips">
-          <span class="combo-chip">Cleanser</span>
-          <span class="combo-chip">Toner</span>
-          <span class="combo-chip">Day Serum</span>
-          <span class="combo-chip">Night Repair</span>
-          <span class="combo-chip">Sunscreen</span>
-        </div>
-        <div class="combo-btns">
-          <button type="button" class="btn-combo-primary open-order">
-            <i class="fas fa-sparkles"></i> <span data-i18n="comboBtn1">Own the Complete Set</span>
-          </button>
-          <a href="#register" class="btn-combo-secondary">
-            <i class="fas fa-arrow-right"></i> <span data-i18n="comboBtn2">Start Your Glow Journey</span>
-          </a>
-        </div>
-        <p class="combo-guarantee">
-          <i class="fas fa-lock"></i> <span data-i18n="comboGuarantee">Best value · Premium experience · Personalized consultation</span>
-        </p>
       </div>
 
     </div>
