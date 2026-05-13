@@ -1374,7 +1374,7 @@
         </div>
 
         <!-- Horizontal card track -->
-        <div class="retail-card-track" id="retailCardTrack" role="list" tabindex="0">
+        <div class="retail-card-track" id="retailCardTrack" role="list">
 
           <div class="retail-card" role="listitem">
             <div class="retail-card-img retail-card-img--photo">
@@ -2080,20 +2080,16 @@
       if (e && retailTrack.releasePointerCapture) {
         try {
           retailTrack.releasePointerCapture(e.pointerId);
-        } catch (err) {}
+        } catch (err) {
+          /* Safe to ignore when the pointer is no longer captured. */
+        }
       }
     }
 
     retailTrack.addEventListener('pointerup', endRetailDrag);
     retailTrack.addEventListener('pointercancel', endRetailDrag);
-    retailTrack.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    retailTrack.addEventListener('keydown', function (e) {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      e.preventDefault();
-      retailTrack.scrollBy({
-        left: (e.key === 'ArrowLeft' ? -1 : 1) * getRetailScrollAmount(),
-        behavior: 'smooth'
-      });
+    retailTrack.addEventListener('dragstart', function (e) {
+      if (retailPointerDown) e.preventDefault();
     });
     retailTrack.addEventListener('scroll', updateRetailButtons, { passive: true });
     window.addEventListener('resize', updateRetailButtons);
