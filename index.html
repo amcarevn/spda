@@ -726,10 +726,7 @@
       font-family: 'DM Sans', sans-serif;
     }
     .combo-save-badge {
-      position: absolute;
-      grid-column: 1 / -1;
-      top: 22px;
-      left: -12px;
+      display: inline-block;
       background: rgba(255,255,255,.85);
       border: 1px solid rgba(201,164,106,.55);
       color: #9caf88;
@@ -738,8 +735,7 @@
       font-size: .7rem;
       font-weight: 700;
       letter-spacing: .08em;
-      box-shadow: 0 8px 18px rgba(63,58,51,.12);
-      backdrop-filter: blur(8px);
+      align-self: center;
     }
     .combo-eyebrow {
       font-size: .68rem;
@@ -753,9 +749,15 @@
     .combo-sub { font-size: .86rem; color: rgba(63,58,51,.68); margin-bottom: 20px; }
     .combo-price-row {
       display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .combo-price-col {
+      display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-bottom: 18px;
     }
     .combo-price-main {
       font-family: 'Cormorant Garamond', serif;
@@ -1056,7 +1058,6 @@
       .ritual-item { gap: 16px; }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
       .retail-card { flex: 0 0 83%; }
-      .combo-save-badge { left: 14px; top: -12px; }
       .pricing-sticky-cta { display: flex; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
@@ -1346,7 +1347,6 @@
       <!-- BOTTOM: Combo Spotlight frame -->
       <div class="combo-card reveal reveal-delay-1">
         <div class="combo-badge">Bộ 5 bước</div>
-        <div class="combo-save-badge">Tiết kiệm 19%</div>
 
         <div class="combo-product-img">
           <img src="./FULL TRẮNG (5).jpeg" alt="Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW" class="combo-product-photo" />
@@ -1357,8 +1357,11 @@
           <h3 class="combo-title">Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW</h3>
           <p class="combo-sub">Nghi thức chăm sóc da trọn vẹn cho làn da rạng rỡ và tươi trẻ.</p>
           <div class="combo-price-row">
-            <span class="combo-price-strike">3.450.000đ</span>
-            <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+            <div class="combo-price-col">
+              <span class="combo-price-strike">3.450.000đ</span>
+              <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+            </div>
+            <div class="combo-save-badge">Tiết kiệm 19%</div>
           </div>
           <div class="combo-chips">
             <span class="combo-chip">5 bước hoàn chỉnh</span>
