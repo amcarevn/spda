@@ -1879,7 +1879,7 @@
       retailScrollHint: 'I-drag o i-swipe nang pahalang para makita ang bawat produkto.',
       retailPrevText: 'Mga naunang produkto',
       retailNextText: 'Mga susunod na produkto',
-      retailPrevAria: 'Mag-scroll sa mga nakaraang produkto',
+      retailPrevAria: 'Mag-scroll sa mga naunang produkto',
       retailNextAria: 'Mag-scroll sa mga susunod na produkto',
       cleanserDesc: 'Malalim na malambot na paglilinis, pinapanatiling malambot, basâ at maayos ang balat.',
       tonerDesc: 'Nagbabalanse ng balat at inihahanda ito para sa pinakamainam na pagsipsip ng aktibong sangkap.',
@@ -2097,7 +2097,12 @@
           retailTrack.releasePointerCapture(e.pointerId);
         } catch (err) {
           /* Safe to ignore when pointer capture already ended before cleanup runs. */
-          if (err.name === 'InvalidStateError') return;
+          if (err.name === 'InvalidStateError') {
+            if (window.console && typeof window.console.debug === 'function') {
+              window.console.debug('Retail slider pointer capture already ended before release.');
+            }
+            return;
+          }
           throw err;
         }
       }
