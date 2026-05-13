@@ -1363,7 +1363,7 @@
             <div class="retail-frame-title" data-i18n-html="retailTitle">Choose Each Product<br><em>by your needs</em></div>
             <p class="retail-frame-sub" data-i18n="retailSub">5 independent products, each step with a unique purpose.</p>
           </div>
-          <div class="retail-slider-controls" aria-label="Retail slider controls">
+          <div class="retail-slider-controls" role="group" aria-label="Retail slider controls">
             <button type="button" class="retail-slider-btn" data-retail-scroll="prev" data-i18n-aria-label="retailPrevAria" aria-label="Scroll to previous products">
               <i class="fas fa-arrow-left"></i>
             </button>
@@ -2084,7 +2084,7 @@
         try {
           retailTrack.releasePointerCapture(e.pointerId);
         } catch (err) {
-          if (!err || err.name !== 'InvalidStateError') throw err;
+          if (err.name !== 'InvalidStateError') throw err;
         }
       }
     }
