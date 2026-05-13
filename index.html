@@ -2045,8 +2045,12 @@
       return firstCard.getBoundingClientRect().width + RETAIL_CARD_GAP;
     }
 
+    function getRetailMaxScroll() {
+      return Math.max(retailTrack.scrollWidth - retailTrack.clientWidth - RETAIL_SCROLL_THRESHOLD, 0);
+    }
+
     function updateRetailButtons() {
-      var maxScroll = Math.max(retailTrack.scrollWidth - retailTrack.clientWidth - RETAIL_SCROLL_THRESHOLD, 0);
+      var maxScroll = getRetailMaxScroll();
       retailScrollBtns.forEach(function (btn) {
         var direction = btn.getAttribute('data-retail-scroll');
         btn.disabled = direction === 'prev'
