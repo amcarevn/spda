@@ -32,9 +32,9 @@
       --pearl:       #FDFAF6;
       --cream:       #F7F0E6;
       --cream-warm:  #EDE3D4;
-      --dark:        #14100E;
-      --dark-2:      #221A15;
-      --dark-3:      #3A2E25;
+      --dark:        #c5a466;
+      --dark-2:      #b59250;
+      --dark-3:      #a27b3a;
       --text:        #2C1F18;
       --text-mid:    #6B4F3A;
       --text-soft:   #9E7D62;
@@ -873,6 +873,57 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: .73rem; color: rgba(255,255,255,.22); flex-wrap: wrap; gap: 8px;
     }
+
+    /* ===== CONTRAST TUNING ===== */
+    #navbar.scrolled .nav-brand,
+    .nav-cta,
+    .btn-glow,
+    .hero-price-float-main,
+    .hero-save-tag,
+    .form-submit,
+    .order-submit {
+      color: var(--text);
+    }
+    .hero-title,
+    .problem-left h2,
+    .pain-title,
+    .ritual-header h2,
+    .ritual-name,
+    .routine-panel--pm .time-label,
+    .routine-panel--pm .rout-name,
+    .footer-brand-name {
+      color: var(--text);
+    }
+    .hero-desc,
+    .btn-ghost,
+    .trust-pill,
+    .problem-left p,
+    .pain-body,
+    .ritual-header p,
+    .ritual-desc,
+    .routine-panel--pm .rout-detail,
+    .results-cell--hero .results-week-sub,
+    .results-cell--hero .results-body,
+    .footer-tagline,
+    .footer-col-title,
+    .footer-links a,
+    .footer-bottom {
+      color: var(--text-mid);
+    }
+    .hero-eyebrow,
+    .hero-title em,
+    .problem-eyebrow,
+    .ritual-tag,
+    .ritual-price,
+    .ritual-chip,
+    .results-cell--hero .results-week,
+    .results-badge,
+    .footer-links a:hover {
+      color: var(--text-soft);
+    }
+    .btn-ghost { border-color: rgba(44,31,24,.3); }
+    .btn-ghost:hover { border-color: var(--text-soft); }
+    .hero-steps-label { color: var(--text-mid); }
 
     /* ===== SCROLL REVEAL ===== */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
