@@ -20,7 +20,7 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #FDFAF6; color: #2C1F18; line-height: 1.7; overflow-x: hidden; }
+    body { font-family: 'DM Sans', sans-serif; background: #f0ebde; color: #2C1F18; line-height: 1.7; overflow-x: hidden; }
     img { max-width: 100%; height: auto; display: block; }
 
     /* ===== DESIGN TOKENS ===== */
@@ -29,7 +29,7 @@
       --gold-light:  #E8D5A3;
       --gold-pale:   #F5EDD8;
       --gold-dark:   #8B6914;
-      --pearl:       #FDFAF6;
+      --pearl:       #f0ebde;
       --cream:       #F7F0E6;
       --cream-warm:  #EDE3D4;
       --dark:        #14100E;
@@ -90,7 +90,7 @@
       transition: background .4s, box-shadow .4s, padding .4s;
     }
     #navbar.scrolled {
-      background: rgba(253, 250, 246, .96); backdrop-filter: blur(12px);
+      background: rgba(240, 235, 222, .96); backdrop-filter: blur(12px);
       box-shadow: 0 1px 24px rgba(44, 31, 24, .08);
       padding: 14px clamp(20px, 4vw, 48px);
     }
@@ -213,7 +213,7 @@
     }
     .hero-price-float {
       position: absolute; bottom: -18px; left: -24px;
-      background: rgba(253,250,246,.97); backdrop-filter: blur(16px);
+      background: rgba(240,235,222,.97); backdrop-filter: blur(16px);
       border-radius: var(--r-md); padding: 16px 22px;
       box-shadow: 0 12px 40px rgba(0,0,0,.28);
       min-width: 180px;
