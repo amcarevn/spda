@@ -44,6 +44,9 @@
       --blush-pale:  #F9EDE7;
       --white:       #FFFFFF;
       --r-sm: 6px; --r-md: 14px; --r-lg: 28px; --r-xl: 99px;
+      --container-padding-inline: clamp(16px, 4vw, 48px);
+      --section-space: clamp(72px, 9vw, 120px);
+      --retail-card-mobile-peek-width: 34px;
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -52,11 +55,12 @@
     h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); }
     h3 { font-size: clamp(1.4rem, 2.2vw, 2rem); }
     p  { font-size: clamp(.9rem, 1.4vw, 1rem); color: var(--text-mid); }
+    h1, h2, h3, h4, p { overflow-wrap: break-word; }
 
     /* ===== LAYOUT ===== */
-    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--container-padding-inline); }
     .container > * { min-width: 0; }
-    section { padding: clamp(72px, 9vw, 120px) 0; }
+    section { padding: var(--section-space) 0; }
 
     /* ===== SECTION LABEL ===== */
     .section-label {
@@ -169,6 +173,15 @@
       box-shadow: 0 8px 32px rgba(200,169,106,.45);
       transition: transform .25s, box-shadow .25s; letter-spacing: .04em;
     }
+    .btn-glow,
+    .btn-ghost,
+    .btn-combo-primary,
+    .btn-combo-secondary,
+    .pricing-sticky-btn,
+    .nav-cta,
+    .retail-slider-btn,
+    .form-submit,
+    .order-submit { min-height: 44px; }
     .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(200,169,106,.55); }
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 8px;
@@ -586,6 +599,8 @@
       margin: 0 -4px;
       padding: 0 4px 8px;
       cursor: grab;
+      align-items: stretch;
+      scroll-padding-inline: 4px;
     }
     .retail-card-track::-webkit-scrollbar { display: none; }
     .retail-card-track.is-dragging {
@@ -609,6 +624,7 @@
       flex-direction: column;
       overflow: hidden;
       transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+      min-height: clamp(360px, 38vw, 430px);
     }
     .retail-card:hover {
       transform: translateY(-4px);
@@ -618,7 +634,7 @@
 
     /* Image placeholder — 58% of card visual */
     .retail-card-img {
-      height: 178px;
+      aspect-ratio: 4 / 5;
       background: linear-gradient(150deg, rgba(239,227,207,.9) 0%, rgba(201,164,106,.22) 55%, rgba(156,175,136,.28) 100%);
       display: flex;
       align-items: center;
@@ -647,7 +663,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 32%;
+      object-position: center;
     }
     .retail-card-photo--serum {
       object-position: center center;
@@ -661,10 +677,11 @@
 
     /* Card body */
     .retail-card-body {
-      padding: 14px 14px 18px;
+      padding: clamp(14px, 1.8vw, 18px);
       display: flex;
       flex-direction: column;
       flex: 1;
+      gap: 8px;
     }
     .retail-card-name {
       font-family: 'Playfair Display', serif;
@@ -672,14 +689,14 @@
       font-weight: 600;
       color: #3f3a33;
       letter-spacing: .05em;
-      margin-bottom: 5px;
+      margin-bottom: 0;
       line-height: 1.2;
     }
     .retail-card-desc {
       font-size: .74rem;
       color: rgba(63,58,51,.68);
       line-height: 1.48;
-      margin-bottom: 8px;
+      margin-bottom: 0;
       flex: 1;
     }
     .retail-card-ingredient {
@@ -689,7 +706,7 @@
       color: #9caf88;
       font-weight: 700;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
     .retail-card-price {
       font-family: 'Playfair Display', serif;
@@ -1109,6 +1126,10 @@
       .formula-cell:nth-child(4), .formula-cell:nth-child(5) { border-top: 1px solid var(--cream-warm); }
     }
     @media (max-width: 900px) {
+      :root {
+        --container-padding-inline: 24px;
+        --section-space: clamp(60px, 10vw, 88px);
+      }
       .hero-grid { grid-template-columns: 1fr; }
       .hero-desc { margin-inline: auto; max-width: 520px; }
       .hero-content { text-align: center; }
@@ -1127,6 +1148,9 @@
       .combo-card {
         grid-template-columns: 1fr;
       }
+      .retail-card {
+        flex: 0 0 clamp(236px, 44vw, 300px);
+      }
       .combo-product-img {
         min-height: 280px;
       }
@@ -1135,8 +1159,41 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
+      :root {
+        --container-padding-inline: 16px;
+        --section-space: clamp(48px, 12vw, 66px);
+      }
       .pain-cards { grid-template-columns: 1fr; }
+      #navbar {
+        padding: 14px var(--container-padding-inline);
+      }
+      #navbar.scrolled {
+        padding: 10px var(--container-padding-inline);
+      }
+      .nav-cta {
+        padding: 11px 16px;
+        font-size: .74rem;
+      }
       .hero-ring--outer, .hero-ring--inner { display: none; }
+      .hero-title {
+        font-size: clamp(2rem, 8.8vw, 2.8rem);
+      }
+      .hero-desc {
+        margin-bottom: 28px;
+        font-size: .92rem;
+        line-height: 1.8;
+      }
+      .hero-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-glow,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+      }
       .hero-price-float { left: 0; bottom: -12px; }
       .hero-steps-badge { right: 0; top: -12px; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -1146,9 +1203,46 @@
       .retail-slider-topbar,
       .retail-slider-footer { align-items: flex-start; }
       .retail-slider-controls { width: 100%; justify-content: flex-start; }
+      .retail-card-track {
+        gap: 10px;
+        margin: 0 -2px;
+        padding: 0 2px 10px;
+        scroll-padding-inline: 2px;
+      }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
-      .retail-card { flex: 0 0 83%; }
+      .retail-card {
+        flex: 0 0 calc(100% - var(--retail-card-mobile-peek-width));
+        min-height: 0;
+      }
+      .retail-card-name {
+        font-size: 1rem;
+        line-height: 1.25;
+      }
+      .retail-card-desc {
+        font-size: .78rem;
+        line-height: 1.55;
+      }
+      .retail-slider-note {
+        font-size: .68rem;
+        line-height: 1.6;
+      }
+      .combo-card {
+        padding: 22px;
+        gap: 20px;
+      }
+      .combo-product-img {
+        min-height: 240px;
+      }
+      .combo-title {
+        font-size: clamp(1.45rem, 7.2vw, 1.9rem);
+      }
       .pricing-sticky-cta { display: flex; }
+      .pricing-sticky-btn {
+        padding: 12px 16px;
+      }
+      .pricing-sticky-price {
+        font-size: 1.2rem;
+      }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
