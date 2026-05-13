@@ -44,7 +44,7 @@
       --blush-pale:  #F9EDE7;
       --white:       #FFFFFF;
       --r-sm: 6px; --r-md: 14px; --r-lg: 28px; --r-xl: 99px;
-      --container-inline: clamp(16px, 4vw, 48px);
+      --container-padding-inline: clamp(16px, 4vw, 48px);
       --section-space: clamp(72px, 9vw, 120px);
     }
 
@@ -57,7 +57,7 @@
     h1, h2, h3, h4, p { overflow-wrap: break-word; }
 
     /* ===== LAYOUT ===== */
-    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--container-inline); }
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--container-padding-inline); }
     .container > * { min-width: 0; }
     section { padding: var(--section-space) 0; }
 
@@ -635,7 +635,6 @@
 
     /* Image placeholder — 58% of card visual */
     .retail-card-img {
-      height: auto;
       aspect-ratio: 4 / 5;
       background: linear-gradient(150deg, rgba(239,227,207,.9) 0%, rgba(201,164,106,.22) 55%, rgba(156,175,136,.28) 100%);
       display: flex;
@@ -1130,7 +1129,7 @@
     }
     @media (max-width: 900px) {
       :root {
-        --container-inline: clamp(16px, 4.5vw, 28px);
+        --container-padding-inline: clamp(16px, 4.5vw, 28px);
         --section-space: clamp(60px, 10vw, 88px);
       }
       .hero-grid { grid-template-columns: 1fr; }
@@ -1163,15 +1162,16 @@
     }
     @media (max-width: 600px) {
       :root {
-        --container-inline: clamp(14px, 5vw, 20px);
+        --container-padding-inline: clamp(14px, 5vw, 20px);
         --section-space: clamp(48px, 12vw, 66px);
+        --mobile-card-peek: 34px;
       }
       .pain-cards { grid-template-columns: 1fr; }
       #navbar {
-        padding: 14px var(--container-inline);
+        padding: 14px var(--container-padding-inline);
       }
       #navbar.scrolled {
-        padding: 10px var(--container-inline);
+        padding: 10px var(--container-padding-inline);
       }
       .nav-cta {
         padding: 11px 16px;
@@ -1214,7 +1214,7 @@
       }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
       .retail-card {
-        flex: 0 0 calc(100% - 34px);
+        flex: 0 0 calc(100% - var(--mobile-card-peek));
         min-height: 0;
       }
       .retail-card-img { aspect-ratio: 5 / 6; }
