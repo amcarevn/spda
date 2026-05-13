@@ -2031,6 +2031,7 @@
   var retailTrack = document.getElementById('retailCardTrack');
   var retailScrollBtns = document.querySelectorAll('[data-retail-scroll]');
   if (retailTrack && retailScrollBtns.length) {
+    var RETAIL_SCROLL_THRESHOLD = 4;
     var retailPointerDown = false;
     var retailStartX = 0;
     var retailStartScroll = 0;
@@ -2042,11 +2043,11 @@
     }
 
     function updateRetailButtons() {
-      var maxScroll = Math.max(retailTrack.scrollWidth - retailTrack.clientWidth - 4, 0);
+      var maxScroll = Math.max(retailTrack.scrollWidth - retailTrack.clientWidth - RETAIL_SCROLL_THRESHOLD, 0);
       retailScrollBtns.forEach(function (btn) {
         var direction = btn.getAttribute('data-retail-scroll');
         btn.disabled = direction === 'prev'
-          ? retailTrack.scrollLeft <= 4
+          ? retailTrack.scrollLeft <= RETAIL_SCROLL_THRESHOLD
           : retailTrack.scrollLeft >= maxScroll;
       });
     }
@@ -2076,8 +2077,10 @@
       if (!retailPointerDown) return;
       retailPointerDown = false;
       retailTrack.classList.remove('is-dragging');
-      if (e && retailTrack.releasePointerCapture && retailTrack.hasPointerCapture && retailTrack.hasPointerCapture(e.pointerId)) {
-        retailTrack.releasePointerCapture(e.pointerId);
+      if (e && retailTrack.releasePointerCapture) {
+        try {
+          retailTrack.releasePointerCapture(e.pointerId);
+        } catch (err) {}
       }
     }
 
