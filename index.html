@@ -2031,7 +2031,10 @@
   var retailTrack = document.getElementById('retailCardTrack');
   var retailScrollBtns = document.querySelectorAll('[data-retail-scroll]');
   if (retailTrack && retailScrollBtns.length) {
+    /* Small buffer avoids button flicker from sub-pixel scroll values at the edges. */
     var RETAIL_SCROLL_THRESHOLD = 4;
+    /* Keep this in sync with the CSS gap value used by .retail-card-track. */
+    var RETAIL_CARD_GAP = 12;
     var retailPointerDown = false;
     var retailStartX = 0;
     var retailStartScroll = 0;
@@ -2039,7 +2042,7 @@
     function getRetailScrollAmount() {
       var firstCard = retailTrack.querySelector('.retail-card');
       if (!firstCard) return retailTrack.clientWidth * 0.85;
-      return firstCard.getBoundingClientRect().width + 12;
+      return firstCard.getBoundingClientRect().width + RETAIL_CARD_GAP;
     }
 
     function updateRetailButtons() {
@@ -2081,7 +2084,7 @@
         try {
           retailTrack.releasePointerCapture(e.pointerId);
         } catch (err) {
-          /* Safe to ignore when the pointer is no longer captured. */
+          if (!err || err.name !== 'InvalidStateError') throw err;
         }
       }
     }
