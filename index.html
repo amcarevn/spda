@@ -568,7 +568,7 @@
       transform: translateY(-1px);
     }
     .retail-slider-btn:disabled {
-      opacity: .42;
+      opacity: .4;
       cursor: not-allowed;
       transform: none;
     }
@@ -2096,6 +2096,7 @@
         try {
           retailTrack.releasePointerCapture(e.pointerId);
         } catch (err) {
+          /* Safe to ignore when pointer capture already ended before cleanup runs. */
           if (err.name === 'InvalidStateError') return;
           throw err;
         }
