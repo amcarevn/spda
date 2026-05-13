@@ -1366,9 +1366,11 @@
           <div class="retail-slider-controls" role="group" aria-label="Retail slider controls">
             <button type="button" class="retail-slider-btn" data-retail-scroll="prev" data-i18n-aria-label="retailPrevAria" aria-label="Scroll to previous products">
               <i class="fas fa-arrow-left"></i>
+              <span class="sr-only" data-i18n="retailPrevText">Previous products</span>
             </button>
             <button type="button" class="retail-slider-btn" data-retail-scroll="next" data-i18n-aria-label="retailNextAria" aria-label="Scroll to next products">
               <i class="fas fa-arrow-right"></i>
+              <span class="sr-only" data-i18n="retailNextText">Next products</span>
             </button>
           </div>
         </div>
@@ -1755,6 +1757,8 @@
       retailTitle: 'Choose Each Product<br><em>by your needs</em>',
       retailSub: '5 independent products, each step with a unique purpose.',
       retailScrollHint: 'Drag or swipe horizontally to explore each product.',
+      retailPrevText: 'Previous products',
+      retailNextText: 'Next products',
       retailPrevAria: 'Scroll to previous products',
       retailNextAria: 'Scroll to next products',
       cleanserDesc: 'Deep gentle cleansing, keeps skin soft, moist and smooth.',
@@ -1873,6 +1877,8 @@
       retailTitle: 'Pumili ng Bawat Produkto<br><em>ayon sa iyong pangangailangan</em>',
       retailSub: '5 independyenteng produkto, bawat hakbang ay may natatanging layunin.',
       retailScrollHint: 'I-drag o i-swipe nang pahalang para makita ang bawat produkto.',
+      retailPrevText: 'Mga naunang produkto',
+      retailNextText: 'Mga susunod na produkto',
       retailPrevAria: 'Mag-scroll sa mga nakaraang produkto',
       retailNextAria: 'Mag-scroll sa mga susunod na produkto',
       cleanserDesc: 'Malalim na malambot na paglilinis, pinapanatiling malambot, basâ at maayos ang balat.',
@@ -2035,13 +2041,15 @@
     var RETAIL_SCROLL_THRESHOLD = 4;
     /* Keep this in sync with the CSS gap value used by .retail-card-track. */
     var RETAIL_CARD_GAP = 12;
+    /* Fallback keeps navigation close to one card-length when sizes are unavailable. */
+    var RETAIL_FALLBACK_SCROLL_RATIO = 0.85;
     var retailPointerDown = false;
     var retailStartX = 0;
     var retailStartScroll = 0;
 
     function getRetailScrollAmount() {
       var firstCard = retailTrack.querySelector('.retail-card');
-      if (!firstCard) return retailTrack.clientWidth * 0.85;
+      if (!firstCard) return retailTrack.clientWidth * RETAIL_FALLBACK_SCROLL_RATIO;
       return firstCard.getBoundingClientRect().width + RETAIL_CARD_GAP;
     }
 
@@ -2088,7 +2096,8 @@
         try {
           retailTrack.releasePointerCapture(e.pointerId);
         } catch (err) {
-          if (err.name !== 'InvalidStateError') throw err;
+          if (err.name === 'InvalidStateError') return;
+          throw err;
         }
       }
     }
