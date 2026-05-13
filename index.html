@@ -658,6 +658,10 @@
       border-radius: 34px;
       padding: clamp(24px, 3.8vw, 38px);
       position: relative;
+      display: grid;
+      grid-template-columns: minmax(320px, 1.05fr) minmax(280px, 1fr);
+      gap: clamp(20px, 3vw, 34px);
+      align-items: stretch;
       border: 1px solid rgba(201,164,106,.62);
       box-shadow: 0 0 0 1px rgba(201,164,106,.38), 0 0 48px rgba(201,164,106,.26), 0 28px 56px rgba(63,58,51,.12);
       backdrop-filter: blur(12px);
@@ -673,17 +677,18 @@
     }
     .combo-card > * { position: relative; z-index: 1; }
 
-    /* Product image placeholder at top of combo card */
+    /* Product image on left side of combo card */
     .combo-product-img {
-      height: 178px;
+      height: 100%;
+      min-height: 360px;
       background: linear-gradient(150deg, rgba(239,227,207,.95) 0%, rgba(201,164,106,.2) 45%, rgba(156,175,136,.22) 100%);
       border-radius: 20px;
-      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
+      padding: 18px;
     }
     .combo-product-img::before {
       content: '';
@@ -696,8 +701,13 @@
     .combo-product-photo {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+    }
+    .combo-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .combo-best {
@@ -1023,6 +1033,12 @@
       .formula-cell:last-child { border-bottom: none; }
       .formula-cell:nth-child(3) { border-right: none; }
       .routine-card { grid-template-columns: 1fr; }
+      .combo-card {
+        grid-template-columns: 1fr;
+      }
+      .combo-product-img {
+        min-height: 280px;
+      }
       .results-track { grid-template-columns: 1fr; }
       .register-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1334,27 +1350,29 @@
           <img src="./FULL%20%286%29.jpeg" alt="Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW" class="combo-product-photo" />
         </div>
 
-        <div class="combo-eyebrow">Giá trọn bộ nghi lễ</div>
-        <h3 class="combo-title">Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW</h3>
-        <p class="combo-sub">Nghi thức chăm sóc da trọn vẹn cho làn da rạng rỡ và tươi trẻ.</p>
-        <div class="combo-price-row">
-          <span class="combo-price-strike">3.450.000đ</span>
-          <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+        <div class="combo-content">
+          <div class="combo-eyebrow">Giá trọn bộ nghi lễ</div>
+          <h3 class="combo-title">Bộ sản phẩm chăm sóc da cao cấp 5 bước LUMI-GLOW</h3>
+          <p class="combo-sub">Nghi thức chăm sóc da trọn vẹn cho làn da rạng rỡ và tươi trẻ.</p>
+          <div class="combo-price-row">
+            <span class="combo-price-strike">3.450.000đ</span>
+            <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
+          </div>
+          <div class="combo-chips">
+            <span class="combo-chip">5 bước hoàn chỉnh</span>
+          </div>
+          <div class="combo-btns">
+            <button type="button" class="btn-combo-primary open-order">
+              <i class="fas fa-sparkles"></i> <span data-i18n="comboBtn1">Own the Complete Set</span>
+            </button>
+            <a href="#register" class="btn-combo-secondary">
+              <i class="fas fa-arrow-right"></i> <span data-i18n="comboBtn2">Start Your Glow Journey</span>
+            </a>
+          </div>
+          <p class="combo-guarantee">
+            <i class="fas fa-lock"></i> <span data-i18n="comboGuarantee">Best value · Premium experience · Personalized consultation</span>
+          </p>
         </div>
-        <div class="combo-chips">
-          <span class="combo-chip">5 bước hoàn chỉnh</span>
-        </div>
-        <div class="combo-btns">
-          <button type="button" class="btn-combo-primary open-order">
-            <i class="fas fa-sparkles"></i> <span data-i18n="comboBtn1">Own the Complete Set</span>
-          </button>
-          <a href="#register" class="btn-combo-secondary">
-            <i class="fas fa-arrow-right"></i> <span data-i18n="comboBtn2">Start Your Glow Journey</span>
-          </a>
-        </div>
-        <p class="combo-guarantee">
-          <i class="fas fa-lock"></i> <span data-i18n="comboGuarantee">Best value · Premium experience · Personalized consultation</span>
-        </p>
       </div>
 
     </div>
