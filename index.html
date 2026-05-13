@@ -46,7 +46,7 @@
       --r-sm: 6px; --r-md: 14px; --r-lg: 28px; --r-xl: 99px;
       --container-padding-inline: clamp(16px, 4vw, 48px);
       --section-space: clamp(72px, 9vw, 120px);
-      --retail-card-mobile-offset: 34px;
+      --retail-card-mobile-peek-width: 34px;
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -601,7 +601,6 @@
       cursor: grab;
       align-items: stretch;
       scroll-padding-inline: 4px;
-      touch-action: pan-y;
     }
     .retail-card-track::-webkit-scrollbar { display: none; }
     .retail-card-track.is-dragging {
@@ -617,7 +616,6 @@
     .retail-card {
       flex: 0 0 clamp(220px, 22vw, 280px);
       scroll-snap-align: start;
-      scroll-snap-stop: always;
       background: rgba(255,255,255,.76);
       border-radius: 22px;
       border: 1px solid rgba(201,164,106,.2);
@@ -1213,7 +1211,7 @@
       }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
       .retail-card {
-        flex: 0 0 calc(100% - var(--retail-card-mobile-offset, 34px));
+        flex: 0 0 calc(100% - var(--retail-card-mobile-peek-width));
         min-height: 0;
       }
       .retail-card-name {
