@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="LUMI-GLOW — Liệu trình chăm sóc da cao cấp 5 bước dành cho phụ nữ trưởng thành 28–45 tuổi. Làm sáng da, cải thiện nếp nhăn, bảo vệ dưới khí hậu nhiệt đới." />
-  <meta name="keywords" content="LUMI-GLOW, chăm sóc da cao cấp, làm sáng da, chống lão hoá, Vitamin C, Retinol, skincare nhiệt đới" />
-  <title>LUMI-GLOW — Liệu Trình Glow Cao Cấp | Chăm Sóc Da Trưởng Thành 28–45</title>
+  <meta name="description" content="LUMI-GLOW — Premium 5-step skincare ritual for women aged 28–45. Brighten skin, improve fine lines, protect under tropical climates." />
+  <meta name="keywords" content="LUMI-GLOW, premium skincare, brightening, anti-aging, Vitamin C, Retinol, tropical skincare" />
+  <title>LUMI-GLOW — Premium Glow Ritual | Skincare for Women 28–45</title>
   <link rel="icon" type="image/jpeg" href="./logoria.jpg" />
 
   <!-- Google Fonts -->
@@ -947,6 +947,26 @@
       overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
+    /* ===== LANGUAGE SWITCHER ===== */
+    .lang-switcher {
+      display: flex; align-items: center; gap: 4px;
+      margin-right: 14px;
+    }
+    .lang-btn {
+      background: transparent; border: 1px solid rgba(200,169,106,.35);
+      border-radius: var(--r-xl); padding: 5px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 600;
+      letter-spacing: .06em; color: var(--text-mid); cursor: pointer;
+      transition: background .22s, color .22s, border-color .22s;
+    }
+    .lang-btn.active {
+      background: var(--gold); border-color: var(--gold); color: var(--dark);
+    }
+    .lang-btn:not(.active):hover {
+      border-color: var(--gold); color: var(--gold);
+    }
+    .nav-right { display: flex; align-items: center; }
+
     /* ===== FOOTER ===== */
     footer { background: linear-gradient(135deg, #a27b39 0%, #8a6530 60%, #6e4f22 100%); padding: 56px 0 28px; color: #fdfcfb; }
     .footer-grid {
@@ -1029,31 +1049,37 @@
 <!-- ORDER POPUP -->
 <div class="order-overlay" id="orderOverlay" aria-hidden="true">
   <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
-    <button class="order-modal-close" id="closeOrderModal" aria-label="Đóng">×</button>
-    <h3 class="order-modal-title" id="orderModalTitle">Sở hữu trọn bộ LUMI-GLOW</h3>
+    <button class="order-modal-close" id="closeOrderModal" aria-label="Close" data-i18n-aria-label="orderClose">×</button>
+    <h3 class="order-modal-title" id="orderModalTitle" data-i18n="orderTitle">Own the Complete LUMI-GLOW</h3>
     <form class="order-form" id="orderModalForm">
-      <label class="sr-only" for="oName">Họ và tên</label>
-      <input class="order-input" id="oName" name="name" type="text" placeholder="Họ và tên đầy đủ" required />
-      <label class="sr-only" for="oPhone">Số điện thoại</label>
-      <input class="order-input" id="oPhone" name="phone" type="tel" placeholder="Số điện thoại" required />
-      <label class="sr-only" for="oEmail">Email</label>
-      <input class="order-input" id="oEmail" name="email" type="email" placeholder="Email của bạn" />
-      <button type="submit" class="order-submit">Đặt ngay — Nhận ưu đãi combo</button>
-      <p class="order-error" id="orderError" role="alert" aria-live="assertive">Vui lòng điền đầy đủ thông tin.</p>
+      <label class="sr-only" for="oName" data-i18n="labelName">Full Name</label>
+      <input class="order-input" id="oName" name="name" type="text" placeholder="Full name" data-i18n-placeholder="orderNamePh" required />
+      <label class="sr-only" for="oPhone" data-i18n="labelPhone">Phone Number</label>
+      <input class="order-input" id="oPhone" name="phone" type="tel" placeholder="Phone number" data-i18n-placeholder="orderPhonePh" required />
+      <label class="sr-only" for="oEmail" data-i18n="labelEmail">Email</label>
+      <input class="order-input" id="oEmail" name="email" type="email" placeholder="Your email" data-i18n-placeholder="orderEmailPh" />
+      <button type="submit" class="order-submit" data-i18n="orderSubmit">Order Now — Get Combo Deal</button>
+      <p class="order-error" id="orderError" role="alert" aria-live="assertive" data-i18n="orderError">Please fill in all required information.</p>
     </form>
   </div>
 </div>
 
 <!-- NAVBAR -->
-<nav id="navbar" role="navigation" aria-label="Điều hướng chính">
+<nav id="navbar" role="navigation" aria-label="Main navigation">
   <a class="nav-brand" href="#hero">LUMI<em>·</em>GLOW</a>
-  <a class="nav-cta" href="#pricing">Sở hữu trọn bộ</a>
+  <div class="nav-right">
+    <div class="lang-switcher" role="group" aria-label="Language selector">
+      <button class="lang-btn active" id="langEN" onclick="setLang('en')" aria-pressed="true">EN</button>
+      <button class="lang-btn" id="langFIL" onclick="setLang('fil')" aria-pressed="false">FIL</button>
+    </div>
+    <a class="nav-cta" href="#pricing" data-i18n="navCta">Own the Complete Set</a>
+  </div>
 </nav>
 
 <!-- ══════════════════════════════
      HERO
 ══════════════════════════════ -->
-<section id="hero" aria-label="Giới thiệu LUMI-GLOW">
+<section id="hero" aria-label="LUMI-GLOW Introduction">
   <div class="hero-orb hero-orb--1" aria-hidden="true"></div>
   <div class="hero-orb hero-orb--2" aria-hidden="true"></div>
   <div class="container">
@@ -1061,25 +1087,25 @@
 
       <!-- Content -->
       <div class="hero-content">
-        <div class="hero-eyebrow">Liệu trình da trưởng thành cao cấp</div>
+        <div class="hero-eyebrow" data-i18n="heroEyebrow">Premium Adult Skin Ritual</div>
         <h1 class="hero-title">
           <strong>LUMI-GLOW</strong>
-          <em>Sáng rạng ngời.</em>
-          <em>Trẻ hoá từ sâu.</em>
+          <em data-i18n="heroTitle1">Radiant Glow.</em>
+          <em data-i18n="heroTitle2">Deep Rejuvenation.</em>
         </h1>
-        <p class="hero-desc">
-          Liệu trình chăm sóc da 5 bước dành riêng cho phụ nữ 28–45 tuổi. Làm sáng, cải thiện nếp nhăn và bảo vệ làn da dưới khí hậu nhiệt đới nóng ẩm.
+        <p class="hero-desc" data-i18n="heroDesc">
+          A 5-step skincare ritual designed for women aged 28–45. Brighten, improve fine lines, and protect your skin in tropical climates.
         </p>
         <div class="hero-actions">
           <button type="button" class="btn-glow open-order">
-            <i class="fas fa-sparkles"></i> Bắt đầu liệu trình glow
+            <i class="fas fa-sparkles"></i> <span data-i18n="heroBtnStart">Start Glow Ritual</span>
           </button>
           <a href="#ritual" class="btn-ghost">
-            <i class="fas fa-arrow-down"></i> Khám phá 5 bước
+            <i class="fas fa-arrow-down"></i> <span data-i18n="heroBtnExplore">Explore 5 Steps</span>
           </a>
         </div>
         <div class="hero-trust">
-          <div class="trust-pill"><i class="fas fa-leaf"></i>&nbsp;Vitamin C 10% tinh khiết</div>
+          <div class="trust-pill"><i class="fas fa-leaf"></i>&nbsp;<span data-i18n="trustVitC">Pure Vitamin C 10%</span></div>
           <div class="trust-pill"><i class="fas fa-shield-halved"></i>&nbsp;Tinosorb S &amp; M</div>
           <div class="trust-pill"><i class="fas fa-moon"></i>&nbsp;Retinol 0.5% Encapsulated</div>
         </div>
@@ -1090,20 +1116,20 @@
         <div class="hero-ring hero-ring--outer"></div>
         <div class="hero-ring hero-ring--inner"></div>
         <div class="hero-img-wrap">
-          <img src="./img/full-nam-3.jpeg" alt="Bộ sản phẩm LUMI-GLOW 5 bước chăm sóc da cao cấp" class="hero-product-img" />
+          <img src="./img/full-nam-3.jpeg" alt="LUMI-GLOW 5-step premium skincare set" class="hero-product-img" />
           <!-- Price float card -->
           <div class="hero-price-float">
-            <div class="hero-price-float-label">Giá combo liệu trình</div>
+            <div class="hero-price-float-label" data-i18n="heropriceLabel">Combo ritual price</div>
             <div class="hero-price-float-main">2.800.000đ</div>
             <div class="hero-price-float-sub">
               <span class="hero-price-orig">3.450.000đ</span>
-              <span class="hero-save-tag">Tiết kiệm 19%</span>
+              <span class="hero-save-tag" data-i18n="heroSaveTag">Save 19%</span>
             </div>
           </div>
           <!-- Steps badge -->
           <div class="hero-steps-badge">
             <div class="hero-steps-num">5</div>
-            <div class="hero-steps-label">Bước hoàn chỉnh</div>
+            <div class="hero-steps-label" data-i18n="heroStepsLabel">Complete Steps</div>
           </div>
         </div>
       </div>
@@ -1137,24 +1163,24 @@
 <!-- ══════════════════════════════
      STATS BAR
 ══════════════════════════════ -->
-<div id="stats" aria-label="Điểm nổi bật của liệu trình">
+<div id="stats" aria-label="Ritual highlights">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-cell reveal">
         <div class="stat-number">28<em>–</em>45</div>
-        <div class="stat-desc">Dành riêng cho phụ nữ trưởng thành</div>
+        <div class="stat-desc" data-i18n="statDesc1">For mature women exclusively</div>
       </div>
       <div class="stat-cell reveal reveal-delay-1">
         <div class="stat-number">5</div>
-        <div class="stat-desc">Bước chăm sóc toàn diện sáng &amp; tối</div>
+        <div class="stat-desc" data-i18n="statDesc2">Total care steps — morning &amp; night</div>
       </div>
       <div class="stat-cell reveal reveal-delay-2">
         <div class="stat-number">10<em>%</em></div>
-        <div class="stat-desc">Vitamin C tinh khiết — nồng độ tối ưu</div>
+        <div class="stat-desc" data-i18n="statDesc3">Pure Vitamin C — optimal concentration</div>
       </div>
       <div class="stat-cell reveal reveal-delay-3">
         <div class="stat-number">19<em>%</em></div>
-        <div class="stat-desc">Tiết kiệm khi mua combo liệu trình</div>
+        <div class="stat-desc" data-i18n="statDesc4">Savings when buying the ritual combo</div>
       </div>
     </div>
   </div>
@@ -1166,41 +1192,41 @@
 <section id="formula" aria-labelledby="formula-heading">
   <div class="container">
     <div class="formula-header reveal">
-      <div class="section-label">Công thức độc quyền</div>
-      <h2 id="formula-heading">Công nghệ hoạt chất<br><em>vượt trội</em></h2>
-      <p>Kết hợp hoàn hảo giữa khoa học da liễu hiện đại và trải nghiệm chăm sóc da cao cấp.</p>
+      <div class="section-label" data-i18n="formulaLabel">Exclusive Formula</div>
+      <h2 id="formula-heading" data-i18n-html="formulaHeading">Advanced Active<br><em>Ingredient Technology</em></h2>
+      <p data-i18n="formulaDesc">A perfect combination of modern dermatological science and premium skincare experience.</p>
     </div>
 
     <div class="formula-band reveal">
       <div class="formula-cell">
         <div class="formula-cell-num">01</div>
-        <div class="formula-cell-name">Vitamin C Tinh Khiết</div>
+        <div class="formula-cell-name" data-i18n="f01Name">Pure Vitamin C</div>
         <div class="formula-cell-conc">10% · Pure L-Ascorbic Acid</div>
-        <p class="formula-cell-desc">Hỗ trợ cải thiện sắc tố và tăng độ sáng da. Kích thích tổng hợp collagen và bảo vệ chống oxy hoá mạnh mẽ.</p>
+        <p class="formula-cell-desc" data-i18n="f01Desc">Supports improvement of pigmentation and skin brightness. Stimulates collagen synthesis and provides powerful antioxidant protection.</p>
       </div>
       <div class="formula-cell">
         <div class="formula-cell-num">02</div>
         <div class="formula-cell-name">Encapsulated Retinol</div>
         <div class="formula-cell-conc">0.5% · Slow-Release Technology</div>
-        <p class="formula-cell-desc">Hỗ trợ cải thiện nếp nhăn với cơ chế giải phóng chậm, ít kích ứng hơn retinol thông thường.</p>
+        <p class="formula-cell-desc" data-i18n="f02Desc">Supports wrinkle improvement with a slow-release mechanism, less irritating than regular retinol.</p>
       </div>
       <div class="formula-cell">
         <div class="formula-cell-num">03</div>
         <div class="formula-cell-name">Brightening Complex</div>
         <div class="formula-cell-conc">Tranexamic Acid · Alpha Arbutin · Niacinamide</div>
-        <p class="formula-cell-desc">Hỗ trợ đều màu da và cải thiện thâm sạm từ nhiều cơ chế tác động khác nhau.</p>
+        <p class="formula-cell-desc" data-i18n="f03Desc">Supports even skin tone and improves dark spots through multiple mechanisms.</p>
       </div>
       <div class="formula-cell">
         <div class="formula-cell-num">04</div>
         <div class="formula-cell-name">Barrier Repair Duo</div>
         <div class="formula-cell-conc">Ceramide · Hyaluronic Acid</div>
-        <p class="formula-cell-desc">Củng cố hàng rào bảo vệ da và duy trì độ ẩm khoẻ mạnh suốt cả ngày dài.</p>
+        <p class="formula-cell-desc" data-i18n="f04Desc">Strengthens the skin's protective barrier and maintains healthy moisture throughout the day.</p>
       </div>
       <div class="formula-cell">
         <div class="formula-cell-num">05</div>
         <div class="formula-cell-name">Tinosorb S &amp; M</div>
         <div class="formula-cell-conc">Next-Gen UV Filters · Broad-Spectrum</div>
-        <p class="formula-cell-desc">Hỗ trợ bảo vệ da dưới ánh nắng mạnh và môi trường nóng ẩm đặc thù của khí hậu nhiệt đới.</p>
+        <p class="formula-cell-desc" data-i18n="f05Desc">Supports skin protection under intense sun and the humid tropical climate.</p>
       </div>
     </div>
   </div>
@@ -1212,9 +1238,9 @@
 <section id="pricing" aria-labelledby="pricing-heading">
   <div class="container" style="position:relative;z-index:1">
     <div class="pricing-header reveal">
-      <div class="section-label">Bảng giá</div>
-      <h2 id="pricing-heading">Sở hữu trọn bộ<br><em>LUMI-GLOW</em></h2>
-      <p>Đầu tư cho làn da — liệu trình hoàn chỉnh với giá combo tốt nhất.</p>
+      <div class="section-label" data-i18n="pricingLabel">Pricing</div>
+      <h2 id="pricing-heading" data-i18n-html="pricingHeading">Own the Complete<br><em>LUMI-GLOW</em></h2>
+      <p data-i18n="pricingDesc">Invest in your skin — complete ritual at the best combo price.</p>
     </div>
 
     <div class="pricing-split">
@@ -1222,9 +1248,9 @@
       <!-- TOP: Retail Selection frame -->
       <div class="pricing-retail-frame reveal">
         <div class="retail-frame-header">
-          <div class="retail-frame-eyebrow">Retail Selection · Sản phẩm mua lẻ</div>
-          <div class="retail-frame-title">Chọn từng sản phẩm<br><em>theo nhu cầu</em></div>
-          <p class="retail-frame-sub">5 sản phẩm độc lập, mỗi bước chăm sóc một công dụng.</p>
+          <div class="retail-frame-eyebrow" data-i18n="retailEyebrow">Retail Selection · Individual Products</div>
+          <div class="retail-frame-title" data-i18n-html="retailTitle">Choose Each Product<br><em>by your needs</em></div>
+          <p class="retail-frame-sub" data-i18n="retailSub">5 independent products, each step with a unique purpose.</p>
         </div>
 
         <!-- Horizontal card track -->
@@ -1236,7 +1262,7 @@
             </div>
             <div class="retail-card-body">
               <div class="retail-card-name">LUMI-GLOW Cleanser</div>
-              <p class="retail-card-desc">Làm sạch sâu dịu nhẹ, giữ da mềm ẩm và thoáng mịn.</p>
+              <p class="retail-card-desc" data-i18n="cleanserDesc">Deep gentle cleansing, keeps skin soft, moist and smooth.</p>
               <div class="retail-card-ingredient">Ceramide + Hyaluronic Acid</div>
               <div class="retail-card-price">490.000đ</div>
             </div>
@@ -1248,7 +1274,7 @@
             </div>
             <div class="retail-card-body">
               <div class="retail-card-name">LUMI-GLOW Toner</div>
-              <p class="retail-card-desc">Cân bằng da và mở đường cho hoạt chất hấp thụ tối ưu.</p>
+              <p class="retail-card-desc" data-i18n="tonerDesc">Balances skin and prepares it for optimal active absorption.</p>
               <div class="retail-card-ingredient">Niacinamide + Tranexamic Acid</div>
               <div class="retail-card-price">590.000đ</div>
             </div>
@@ -1260,8 +1286,8 @@
             </div>
             <div class="retail-card-body">
               <div class="retail-card-name">LUMI-GLOW Day Serum</div>
-              <p class="retail-card-desc">Làm sáng da ban ngày, chống oxy hoá, tăng glow tự nhiên.</p>
-              <div class="retail-card-ingredient">Vitamin C 10% tinh khiết</div>
+              <p class="retail-card-desc" data-i18n="daySerumDesc">Brightens skin during the day, antioxidant, enhances natural glow.</p>
+              <div class="retail-card-ingredient">Vitamin C 10% Pure</div>
               <div class="retail-card-price">990.000đ</div>
             </div>
           </div>
@@ -1272,7 +1298,7 @@
             </div>
             <div class="retail-card-body">
               <div class="retail-card-name">LUMI-GLOW Night Repair</div>
-              <p class="retail-card-desc">Phục hồi qua đêm, hỗ trợ cải thiện nếp nhăn và bề mặt da.</p>
+              <p class="retail-card-desc" data-i18n="nightRepairDesc">Overnight recovery, supports wrinkle and texture improvement.</p>
               <div class="retail-card-ingredient">Encapsulated Retinol 0.5%</div>
               <div class="retail-card-price">890.000đ</div>
             </div>
@@ -1284,7 +1310,7 @@
             </div>
             <div class="retail-card-body">
               <div class="retail-card-name">LUMI-GLOW Sunscreen</div>
-              <p class="retail-card-desc">Bảo vệ toàn diện trước nắng gắt và môi trường nóng ẩm.</p>
+              <p class="retail-card-desc" data-i18n="sunscreenDesc">Comprehensive protection against intense sun and humid environment.</p>
               <div class="retail-card-ingredient">Tinosorb S &amp; M</div>
               <div class="retail-card-price">490.000đ</div>
             </div>
@@ -1293,7 +1319,7 @@
         </div>
 
         <div class="retail-total-row">
-          <span class="pricing-total-lbl">Tổng mua lẻ</span>
+          <span class="pricing-total-lbl" data-i18n="retailTotalLbl">Retail Total</span>
           <span class="pricing-total-val">3.450.000đ</span>
         </div>
       </div>
@@ -1310,10 +1336,10 @@
 
         <div class="combo-eyebrow">Luxury complete ritual</div>
         <h3 class="combo-title">LUMI-GLOW<br>Complete Glow Set</h3>
-        <p class="combo-sub">Bản phối 5 bước chuẩn chỉnh cho hành trình glow & anti-aging cao cấp.</p>
+        <p class="combo-sub" data-i18n="comboSub">The perfect 5-step formula for your premium glow &amp; anti-aging journey.</p>
         <div class="combo-price-row">
-          <span class="combo-price-strike">Tổng mua lẻ 3.450.000đ</span>
-          <div class="combo-price-main" aria-label="Giá combo 2 triệu 8 trăm nghìn đồng">2.800.000đ</div>
+          <span class="combo-price-strike" data-i18n="comboStrike">Retail total 3,450,000đ</span>
+          <div class="combo-price-main" aria-label="Combo price 2,800,000đ">2.800.000đ</div>
         </div>
         <div class="combo-chips">
           <span class="combo-chip">Cleanser</span>
@@ -1324,21 +1350,21 @@
         </div>
         <div class="combo-btns">
           <button type="button" class="btn-combo-primary open-order">
-            <i class="fas fa-sparkles"></i> Sở hữu trọn bộ
+            <i class="fas fa-sparkles"></i> <span data-i18n="comboBtn1">Own the Complete Set</span>
           </button>
           <a href="#register" class="btn-combo-secondary">
-            <i class="fas fa-arrow-right"></i> Bắt đầu liệu trình glow
+            <i class="fas fa-arrow-right"></i> <span data-i18n="comboBtn2">Start Your Glow Journey</span>
           </a>
         </div>
         <p class="combo-guarantee">
-          <i class="fas fa-lock"></i> Giá trị cao nhất · Trải nghiệm premium · Tư vấn cá nhân hoá
+          <i class="fas fa-lock"></i> <span data-i18n="comboGuarantee">Best value · Premium experience · Personalized consultation</span>
         </p>
       </div>
 
     </div>
     <div class="pricing-sticky-cta">
       <span class="pricing-sticky-price">2.800.000đ</span>
-      <button type="button" class="pricing-sticky-btn open-order">Sở hữu trọn bộ</button>
+      <button type="button" class="pricing-sticky-btn open-order" data-i18n="stickyBtn">Own the Complete Set</button>
     </div>
   </div>
 </section>
@@ -1349,9 +1375,9 @@
 <section id="routine" aria-labelledby="routine-heading">
   <div class="container">
     <div class="routine-header reveal">
-      <div class="section-label">Lịch trình hàng ngày</div>
-      <h2 id="routine-heading">Routine Sáng &amp; Tối</h2>
-      <p>Hành trình glow bắt đầu từ sự nhất quán mỗi ngày.</p>
+      <div class="section-label" data-i18n="routineLabel">Daily Schedule</div>
+      <h2 id="routine-heading" data-i18n="routineHeading">Morning &amp; Evening Routine</h2>
+      <p data-i18n="routineDesc">Your glow journey begins with consistency every day.</p>
     </div>
 
     <div class="routine-card reveal">
@@ -1359,35 +1385,35 @@
       <div class="routine-panel routine-panel--am">
         <div class="routine-panel-head">
           <div class="time-badge time-badge--am" aria-hidden="true"><i class="fas fa-sun"></i></div>
-          <div class="time-label">Buổi Sáng</div>
+          <div class="time-label" data-i18n="routineAM">Morning</div>
         </div>
         <ul class="routine-steps" role="list">
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">1</div>
             <div>
               <div class="rout-name">LUMI-GLOW Cleanser</div>
-              <div class="rout-detail">Làm sạch nhẹ nhàng — chuẩn bị da đón nhận hoạt chất</div>
+              <div class="rout-detail" data-i18n="amStep1">Gentle cleansing — prepares skin to receive active ingredients</div>
             </div>
           </li>
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">2</div>
             <div>
               <div class="rout-name">LUMI-GLOW Toner</div>
-              <div class="rout-detail">Cân bằng pH, cấp ẩm tức thì</div>
+              <div class="rout-detail" data-i18n="amStep2">Balances pH, provides instant hydration</div>
             </div>
           </li>
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">3</div>
             <div>
               <div class="rout-name">LUMI-GLOW Day Serum</div>
-              <div class="rout-detail">Vitamin C 10% — làm sáng và bảo vệ chống oxy hoá</div>
+              <div class="rout-detail" data-i18n="amStep3">Vitamin C 10% — brightens and protects against oxidation</div>
             </div>
           </li>
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">4</div>
             <div>
               <div class="rout-name">LUMI-GLOW Sunscreen</div>
-              <div class="rout-detail">Bước cuối bắt buộc — bảo vệ khỏi UV nhiệt đới</div>
+              <div class="rout-detail" data-i18n="amStep4">Final essential step — shields from tropical UV</div>
             </div>
           </li>
         </ul>
@@ -1397,28 +1423,28 @@
       <div class="routine-panel routine-panel--pm">
         <div class="routine-panel-head">
           <div class="time-badge time-badge--pm" aria-hidden="true"><i class="fas fa-moon"></i></div>
-          <div class="time-label">Buổi Tối</div>
+          <div class="time-label" data-i18n="routinePM">Evening</div>
         </div>
         <ul class="routine-steps" role="list">
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">1</div>
             <div>
               <div class="rout-name">LUMI-GLOW Cleanser</div>
-              <div class="rout-detail">Làm sạch sâu — loại bỏ ô nhiễm tích luỹ trong ngày</div>
+              <div class="rout-detail" data-i18n="pmStep1">Deep cleansing — removes pollution accumulated during the day</div>
             </div>
           </li>
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">2</div>
             <div>
               <div class="rout-name">LUMI-GLOW Toner</div>
-              <div class="rout-detail">Phục hồi độ ẩm sau một ngày dài</div>
+              <div class="rout-detail" data-i18n="pmStep2">Restores moisture after a long day</div>
             </div>
           </li>
           <li class="rout-item">
             <div class="rout-dot" aria-hidden="true">3</div>
             <div>
               <div class="rout-name">LUMI-GLOW Night Repair</div>
-              <div class="rout-detail">Retinol 0.5% — tái tạo và phục hồi sâu khi ngủ</div>
+              <div class="rout-detail" data-i18n="pmStep3">Retinol 0.5% — renews and deeply restores while you sleep</div>
             </div>
           </li>
         </ul>
@@ -1433,29 +1459,29 @@
 <section id="results" aria-labelledby="results-heading">
   <div class="container">
     <div class="results-header reveal">
-      <div class="section-label">Hiệu quả mong đợi</div>
-      <h2 id="results-heading">Hành trình <em>glow</em> của bạn</h2>
-      <p>Kết quả dần hiện rõ khi bạn duy trì liệu trình đủ — từng bước, từng ngày.</p>
+      <div class="section-label" data-i18n="resultsLabel">Expected Results</div>
+      <h2 id="results-heading" data-i18n-html="resultsHeading">Your <em>glow</em> journey</h2>
+      <p data-i18n="resultsDesc">Results gradually appear as you maintain the routine — step by step, day by day.</p>
     </div>
 
     <div class="results-track">
       <div class="results-cell reveal">
-        <div class="results-week">Tuần 2</div>
-        <div class="results-week-sub">Khởi động</div>
-        <p class="results-body">Da trở nên mềm mịn và ẩm hơn. Tone da bắt đầu đều. Hàng rào bảo vệ được củng cố rõ rệt.</p>
-        <div class="results-badge"><i class="fas fa-circle-dot"></i> Bắt đầu glow</div>
+        <div class="results-week" data-i18n="week2">Week 2</div>
+        <div class="results-week-sub" data-i18n="week2Sub">Start-Up</div>
+        <p class="results-body" data-i18n="week2Body">Skin becomes softer and more hydrated. Tone begins to even out. Protective barrier noticeably strengthened.</p>
+        <div class="results-badge"><i class="fas fa-circle-dot"></i> <span data-i18n="badge2">Start Glowing</span></div>
       </div>
       <div class="results-cell results-cell--hero reveal reveal-delay-1">
-        <div class="results-week">Tuần 4</div>
-        <div class="results-week-sub">Đỉnh điểm chuyển hoá</div>
-        <p class="results-body">Sắc tố rõ ràng đều hơn. Thâm sạm mờ đáng kể. Nếp nhăn nhỏ cải thiện. Da sáng rạng và căng bóng trông thấy.</p>
-        <div class="results-badge"><i class="fas fa-sun"></i> Rạng ngời đỉnh cao</div>
+        <div class="results-week" data-i18n="week4">Week 4</div>
+        <div class="results-week-sub" data-i18n="week4Sub">Peak Transformation</div>
+        <p class="results-body" data-i18n="week4Body">Pigmentation visibly more even. Dark spots significantly faded. Fine lines improved. Skin looks radiant and plump.</p>
+        <div class="results-badge"><i class="fas fa-sun"></i> <span data-i18n="badge4">Peak Radiance</span></div>
       </div>
       <div class="results-cell reveal reveal-delay-2">
-        <div class="results-week">Tuần 8</div>
-        <div class="results-week-sub">Hiệu quả bền vững</div>
-        <p class="results-body">Làn da chuyển hoá hoàn toàn — sáng, đều, khoẻ. Nếp nhăn cải thiện rõ. Glow tự nhiên từ bên trong.</p>
-        <div class="results-badge"><i class="fas fa-star"></i> Glow bền vững</div>
+        <div class="results-week" data-i18n="week8">Week 8</div>
+        <div class="results-week-sub" data-i18n="week8Sub">Sustained Results</div>
+        <p class="results-body" data-i18n="week8Body">Skin fully transformed — bright, even, healthy. Wrinkles clearly improved. Natural glow from within.</p>
+        <div class="results-badge"><i class="fas fa-star"></i> <span data-i18n="badge8">Lasting Glow</span></div>
       </div>
     </div>
   </div>
@@ -1469,41 +1495,41 @@
     <div class="register-grid">
 
       <div class="register-left reveal">
-        <div class="section-label label-left">Đăng ký tư vấn</div>
-        <h2 id="register-heading">Bắt đầu<br><em>hành trình glow</em><br>của bạn</h2>
-        <p>Để lại thông tin — chuyên gia của chúng tôi sẽ liên hệ để tư vấn liệu trình phù hợp và gửi ưu đãi đặc biệt dành riêng cho bạn.</p>
+        <div class="section-label label-left" data-i18n="registerLabel">Register for Consultation</div>
+        <h2 id="register-heading" data-i18n-html="registerHeading">Begin<br><em>your glow journey</em></h2>
+        <p data-i18n="registerDesc">Leave your information — our experts will contact you to advise on the right ritual and send you exclusive offers tailored just for you.</p>
         <ul class="benefit-list">
-          <li class="benefit-item"><i class="fas fa-check-circle"></i> Tư vấn da miễn phí 1:1 với chuyên gia</li>
-          <li class="benefit-item"><i class="fas fa-check-circle"></i> Ưu đãi độc quyền cho đơn đầu tiên</li>
-          <li class="benefit-item"><i class="fas fa-check-circle"></i> Hướng dẫn liệu trình cá nhân hoá</li>
-          <li class="benefit-item"><i class="fas fa-check-circle"></i> Theo dõi tiến trình glow cùng chuyên gia</li>
+          <li class="benefit-item"><i class="fas fa-check-circle"></i> <span data-i18n="benefit1">Free 1:1 skin consultation with an expert</span></li>
+          <li class="benefit-item"><i class="fas fa-check-circle"></i> <span data-i18n="benefit2">Exclusive offers for your first order</span></li>
+          <li class="benefit-item"><i class="fas fa-check-circle"></i> <span data-i18n="benefit3">Personalized ritual guidance</span></li>
+          <li class="benefit-item"><i class="fas fa-check-circle"></i> <span data-i18n="benefit4">Track your glow progress with an expert</span></li>
         </ul>
       </div>
 
       <div class="register-box reveal reveal-delay-1">
-        <h3 class="register-box-title">Nhận tư vấn miễn phí</h3>
+        <h3 class="register-box-title" data-i18n="registerBoxTitle">Get Free Consultation</h3>
         <form id="registerForm" onsubmit="handleRegister(event)" novalidate>
           <div class="form-group">
-            <label class="sr-only" for="rName">Họ và tên</label>
-            <input type="text" class="form-input" id="rName" placeholder="Họ và tên đầy đủ" required />
+            <label class="sr-only" for="rName" data-i18n="labelName">Full Name</label>
+            <input type="text" class="form-input" id="rName" placeholder="Full name" data-i18n-placeholder="rNamePh" required />
           </div>
           <div class="form-group">
-            <label class="sr-only" for="rPhone">Số điện thoại</label>
-            <input type="tel" class="form-input" id="rPhone" placeholder="Số điện thoại" required pattern="^(0|\+84)[0-9]{9}$" />
+            <label class="sr-only" for="rPhone" data-i18n="labelPhone">Phone Number</label>
+            <input type="tel" class="form-input" id="rPhone" placeholder="Phone number" data-i18n-placeholder="rPhonePh" required pattern="^(\+?[0-9]{7,15})$" />
           </div>
           <div class="form-group">
-            <label class="sr-only" for="rEmail">Email</label>
-            <input type="email" class="form-input" id="rEmail" placeholder="Email của bạn" required />
+            <label class="sr-only" for="rEmail" data-i18n="labelEmail">Email</label>
+            <input type="email" class="form-input" id="rEmail" placeholder="Your email" data-i18n-placeholder="rEmailPh" required />
           </div>
           <button type="submit" class="form-submit">
-            <i class="fas fa-sparkles"></i> Bắt đầu liệu trình glow
+            <i class="fas fa-sparkles"></i> <span data-i18n="registerSubmit">Start Glow Ritual</span>
           </button>
-          <p class="form-error-msg" id="registerError" role="alert" aria-live="assertive">Vui lòng điền đầy đủ thông tin hợp lệ.</p>
-          <p class="form-note"><i class="fas fa-lock"></i> Thông tin của bạn được bảo mật hoàn toàn. Không spam.</p>
+          <p class="form-error-msg" id="registerError" role="alert" aria-live="assertive" data-i18n="registerError">Please fill in all required information correctly.</p>
+          <p class="form-note"><i class="fas fa-lock"></i> <span data-i18n="registerNote">Your information is completely secure. No spam.</span></p>
         </form>
         <div class="success-msg" id="registerSuccess">
           <i class="fas fa-check-circle" style="margin-right:8px"></i>
-          Cảm ơn bạn! Chuyên gia của chúng tôi sẽ liên hệ trong vòng 24 giờ.
+          <span data-i18n="registerSuccess">Thank you! Our expert will contact you within 24 hours.</span>
         </div>
       </div>
 
@@ -1519,30 +1545,30 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand-name">LUMI<em>·</em>GLOW</div>
-        <p class="footer-tagline">Liệu trình chăm sóc da cao cấp dành cho phụ nữ trưởng thành 28–45 tuổi. Sáng rạng ngời — Trẻ hoá — Bảo vệ.</p>
+        <p class="footer-tagline" data-i18n="footerTagline">Premium skincare ritual for mature women aged 28–45. Radiant — Rejuvenated — Protected.</p>
       </div>
       <div>
-        <div class="footer-col-title">Sản phẩm</div>
+        <div class="footer-col-title" data-i18n="footerProducts">Products</div>
         <ul class="footer-links">
-          <li><a href="#ritual">Cleanser</a></li>
-          <li><a href="#ritual">Toner</a></li>
-          <li><a href="#ritual">Day Serum</a></li>
-          <li><a href="#ritual">Night Repair</a></li>
-          <li><a href="#ritual">Sunscreen</a></li>
+          <li><a href="#routine">Cleanser</a></li>
+          <li><a href="#routine">Toner</a></li>
+          <li><a href="#routine">Day Serum</a></li>
+          <li><a href="#routine">Night Repair</a></li>
+          <li><a href="#routine">Sunscreen</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">Hỗ trợ</div>
+        <div class="footer-col-title" data-i18n="footerSupport">Support</div>
         <ul class="footer-links">
-          <li><a href="#register">Tư vấn miễn phí</a></li>
-          <li><a href="#formula">Công thức</a></li>
-          <li><a href="#routine">Hướng dẫn sử dụng</a></li>
-          <li><a href="#pricing">Mua ngay</a></li>
+          <li><a href="#register" data-i18n="footerLinkConsult">Free Consultation</a></li>
+          <li><a href="#formula" data-i18n="footerLinkFormula">Formula</a></li>
+          <li><a href="#routine" data-i18n="footerLinkGuide">How to Use</a></li>
+          <li><a href="#pricing" data-i18n="footerLinkBuy">Buy Now</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 LUMI-GLOW. Bảo lưu mọi quyền.</span>
+      <span data-i18n="footerCopy">© 2025 LUMI-GLOW. All rights reserved.</span>
       <span><i class="fas fa-sparkles" style="color:var(--gold);margin-right:4px"></i>Luxury · Science · Glow</span>
     </div>
   </div>
@@ -1552,6 +1578,299 @@
      JAVASCRIPT
 ══════════════════════════════ -->
 <script>
+  /* ══════════════════════════════
+     TRANSLATIONS
+  ══════════════════════════════ */
+  var translations = {
+    en: {
+      /* Navbar */
+      navCta: 'Own the Complete Set',
+      /* Order popup */
+      orderClose: 'Close',
+      orderTitle: 'Own the Complete LUMI-GLOW',
+      labelName: 'Full Name',
+      labelPhone: 'Phone Number',
+      labelEmail: 'Email',
+      orderNamePh: 'Full name',
+      orderPhonePh: 'Phone number',
+      orderEmailPh: 'Your email',
+      orderSubmit: 'Order Now — Get Combo Deal',
+      orderError: 'Please fill in all required information.',
+      /* Hero */
+      heroEyebrow: 'Premium Adult Skin Ritual',
+      heroTitle1: 'Radiant Glow.',
+      heroTitle2: 'Deep Rejuvenation.',
+      heroDesc: 'A 5-step skincare ritual designed for women aged 28–45. Brighten, improve fine lines, and protect your skin in tropical climates.',
+      heroBtnStart: 'Start Glow Ritual',
+      heroBtnExplore: 'Explore 5 Steps',
+      trustVitC: 'Pure Vitamin C 10%',
+      heropriceLabel: 'Combo ritual price',
+      heroSaveTag: 'Save 19%',
+      heroStepsLabel: 'Complete Steps',
+      /* Stats */
+      statDesc1: 'For mature women exclusively',
+      statDesc2: 'Total care steps — morning & night',
+      statDesc3: 'Pure Vitamin C — optimal concentration',
+      statDesc4: 'Savings when buying the ritual combo',
+      /* Formula */
+      formulaLabel: 'Exclusive Formula',
+      formulaHeading: 'Advanced Active<br><em>Ingredient Technology</em>',
+      formulaDesc: 'A perfect combination of modern dermatological science and premium skincare experience.',
+      f01Name: 'Pure Vitamin C',
+      f01Desc: 'Supports improvement of pigmentation and skin brightness. Stimulates collagen synthesis and provides powerful antioxidant protection.',
+      f02Desc: 'Supports wrinkle improvement with a slow-release mechanism, less irritating than regular retinol.',
+      f03Desc: 'Supports even skin tone and improves dark spots through multiple mechanisms.',
+      f04Desc: "Strengthens the skin's protective barrier and maintains healthy moisture throughout the day.",
+      f05Desc: 'Supports skin protection under intense sun and the humid tropical climate.',
+      /* Pricing */
+      pricingLabel: 'Pricing',
+      pricingHeading: 'Own the Complete<br><em>LUMI-GLOW</em>',
+      pricingDesc: 'Invest in your skin — complete ritual at the best combo price.',
+      retailEyebrow: 'Retail Selection · Individual Products',
+      retailTitle: 'Choose Each Product<br><em>by your needs</em>',
+      retailSub: '5 independent products, each step with a unique purpose.',
+      cleanserDesc: 'Deep gentle cleansing, keeps skin soft, moist and smooth.',
+      tonerDesc: 'Balances skin and prepares it for optimal active absorption.',
+      daySerumDesc: 'Brightens skin during the day, antioxidant, enhances natural glow.',
+      nightRepairDesc: 'Overnight recovery, supports wrinkle and texture improvement.',
+      sunscreenDesc: 'Comprehensive protection against intense sun and humid environment.',
+      retailTotalLbl: 'Retail Total',
+      comboSub: 'The perfect 5-step formula for your premium glow & anti-aging journey.',
+      comboStrike: 'Retail total 3,450,000đ',
+      comboBtn1: 'Own the Complete Set',
+      comboBtn2: 'Start Your Glow Journey',
+      comboGuarantee: 'Best value · Premium experience · Personalized consultation',
+      stickyBtn: 'Own the Complete Set',
+      /* Routine */
+      routineLabel: 'Daily Schedule',
+      routineHeading: 'Morning & Evening Routine',
+      routineDesc: 'Your glow journey begins with consistency every day.',
+      routineAM: 'Morning',
+      routinePM: 'Evening',
+      amStep1: 'Gentle cleansing — prepares skin to receive active ingredients',
+      amStep2: 'Balances pH, provides instant hydration',
+      amStep3: 'Vitamin C 10% — brightens and protects against oxidation',
+      amStep4: 'Final essential step — shields from tropical UV',
+      pmStep1: 'Deep cleansing — removes pollution accumulated during the day',
+      pmStep2: 'Restores moisture after a long day',
+      pmStep3: 'Retinol 0.5% — renews and deeply restores while you sleep',
+      /* Results */
+      resultsLabel: 'Expected Results',
+      resultsHeading: 'Your <em>glow</em> journey',
+      resultsDesc: 'Results gradually appear as you maintain the routine — step by step, day by day.',
+      week2: 'Week 2',
+      week2Sub: 'Start-Up',
+      week2Body: 'Skin becomes softer and more hydrated. Tone begins to even out. Protective barrier noticeably strengthened.',
+      badge2: 'Start Glowing',
+      week4: 'Week 4',
+      week4Sub: 'Peak Transformation',
+      week4Body: 'Pigmentation visibly more even. Dark spots significantly faded. Fine lines improved. Skin looks radiant and plump.',
+      badge4: 'Peak Radiance',
+      week8: 'Week 8',
+      week8Sub: 'Sustained Results',
+      week8Body: 'Skin fully transformed — bright, even, healthy. Wrinkles clearly improved. Natural glow from within.',
+      badge8: 'Lasting Glow',
+      /* Register */
+      registerLabel: 'Register for Consultation',
+      registerHeading: 'Begin<br><em>your glow journey</em>',
+      registerDesc: 'Leave your information — our experts will contact you to advise on the right ritual and send you exclusive offers tailored just for you.',
+      benefit1: 'Free 1:1 skin consultation with an expert',
+      benefit2: 'Exclusive offers for your first order',
+      benefit3: 'Personalized ritual guidance',
+      benefit4: 'Track your glow progress with an expert',
+      registerBoxTitle: 'Get Free Consultation',
+      rNamePh: 'Full name',
+      rPhonePh: 'Phone number',
+      rEmailPh: 'Your email',
+      registerSubmit: 'Start Glow Ritual',
+      registerError: 'Please fill in all required information correctly.',
+      registerNote: 'Your information is completely secure. No spam.',
+      registerSuccess: 'Thank you! Our expert will contact you within 24 hours.',
+      /* Footer */
+      footerTagline: 'Premium skincare ritual for mature women aged 28–45. Radiant — Rejuvenated — Protected.',
+      footerProducts: 'Products',
+      footerSupport: 'Support',
+      footerLinkConsult: 'Free Consultation',
+      footerLinkFormula: 'Formula',
+      footerLinkGuide: 'How to Use',
+      footerLinkBuy: 'Buy Now',
+      footerCopy: '© 2025 LUMI-GLOW. All rights reserved.'
+    },
+
+    fil: {
+      /* Navbar */
+      navCta: 'Ariin ang Kumpletong Set',
+      /* Order popup */
+      orderClose: 'Isara',
+      orderTitle: 'Ariin ang Kumpletong LUMI-GLOW',
+      labelName: 'Buong Pangalan',
+      labelPhone: 'Numero ng Telepono',
+      labelEmail: 'Email',
+      orderNamePh: 'Buong pangalan',
+      orderPhonePh: 'Numero ng telepono',
+      orderEmailPh: 'Ang iyong email',
+      orderSubmit: 'Umorder Ngayon — Kumuha ng Combo Deal',
+      orderError: 'Mangyaring punan ang lahat ng kinakailangang impormasyon.',
+      /* Hero */
+      heroEyebrow: 'Premium na Ritwal ng Pangangalaga sa Balat',
+      heroTitle1: 'Maliwanag na Glow.',
+      heroTitle2: 'Muling Pagbabata.',
+      heroDesc: 'Isang 5-hakbang na ritwal sa pangangalaga ng balat para sa mga babaeng may edad 28–45. Palinawin, bawasan ang kulubot, at pangalagaan ang balat sa tropikal na klima.',
+      heroBtnStart: 'Simulan ang Glow Ritual',
+      heroBtnExplore: 'Tuklasin ang 5 Hakbang',
+      trustVitC: 'Purong Vitamin C 10%',
+      heropriceLabel: 'Presyo ng combo ritual',
+      heroSaveTag: 'Makatipid ng 19%',
+      heroStepsLabel: 'Kumpletong Hakbang',
+      /* Stats */
+      statDesc1: 'Para sa mga mature na babae',
+      statDesc2: 'Mga hakbang ng pangangalaga — umaga at gabi',
+      statDesc3: 'Purong Vitamin C — pinakamainam na konsentrasyon',
+      statDesc4: 'Matitipid sa pagbili ng combo ritual',
+      /* Formula */
+      formulaLabel: 'Eksklusibong Pormula',
+      formulaHeading: 'Advanced na Teknolohiya ng<br><em>Aktibong Sangkap</em>',
+      formulaDesc: 'Perpektong kombinasyon ng modernong agham sa dermatology at premium na karanasan sa pangangalaga ng balat.',
+      f01Name: 'Purong Vitamin C',
+      f01Desc: 'Tumutulong sa pagpapabuti ng pigmentasyon at liwanag ng balat. Nagpapasigla ng synthesis ng collagen at nagbibigay ng makapangyarihang proteksyon sa antioxidant.',
+      f02Desc: 'Tumutulong sa pagpapabuti ng kulubot na may mekanismo ng mabagal na paglabas, mas hindi nakakairita kaysa sa regular na retinol.',
+      f03Desc: "Tumutulong sa pantay na kulay ng balat at nagpapabuti ng madilim na batik mula sa iba't ibang mekanismo.",
+      f04Desc: 'Nagpapatibay ng hadlang na nagpoprotekta sa balat at nagpapanatili ng malusog na kahalumigmigan sa buong araw.',
+      f05Desc: 'Tumutulong sa proteksyon ng balat sa ilalim ng matinding sikat ng araw at tropikal na klima.',
+      /* Pricing */
+      pricingLabel: 'Presyo',
+      pricingHeading: 'Ariin ang Kumpletong<br><em>LUMI-GLOW</em>',
+      pricingDesc: 'Mag-invest sa iyong balat — kumpletong ritual sa pinakamainam na presyo ng combo.',
+      retailEyebrow: 'Retail Selection · Indibidwal na Produkto',
+      retailTitle: 'Pumili ng Bawat Produkto<br><em>ayon sa iyong pangangailangan</em>',
+      retailSub: '5 independyenteng produkto, bawat hakbang ay may natatanging layunin.',
+      cleanserDesc: 'Malalim na malambot na paglilinis, pinapanatiling malambot, basâ at maayos ang balat.',
+      tonerDesc: 'Nagbabalanse ng balat at inihahanda ito para sa pinakamainam na pagsipsip ng aktibong sangkap.',
+      daySerumDesc: 'Nagpapalilaw ng balat sa araw, antioxidant, nagpapalakas ng natural na glow.',
+      nightRepairDesc: 'Pagbabago sa gabi, tumutulong sa pagpapabuti ng kulubot at texture ng balat.',
+      sunscreenDesc: 'Komprehensibong proteksyon laban sa matinding araw at mahalumigmig na kapaligiran.',
+      retailTotalLbl: 'Kabuuang Retail',
+      comboSub: 'Ang perpektong 5-hakbang na formula para sa iyong premium na glow at anti-aging na paglalakbay.',
+      comboStrike: 'Kabuuang retail 3,450,000đ',
+      comboBtn1: 'Ariin ang Kumpletong Set',
+      comboBtn2: 'Simulan ang Iyong Glow na Paglalakbay',
+      comboGuarantee: 'Pinakamainam na halaga · Premium na karanasan · Personalisadong konsultasyon',
+      stickyBtn: 'Ariin ang Kumpletong Set',
+      /* Routine */
+      routineLabel: 'Pang-araw-araw na Iskedyul',
+      routineHeading: 'Umaga at Gabi na Routine',
+      routineDesc: 'Ang iyong glow na paglalakbay ay nagsisimula sa pagkakatulad araw-araw.',
+      routineAM: 'Umaga',
+      routinePM: 'Gabi',
+      amStep1: 'Malambot na paglilinis — inihahanda ang balat para sa mga aktibong sangkap',
+      amStep2: 'Nagbabalanse ng pH, agad na nagbibigay ng kahalumigmigan',
+      amStep3: 'Vitamin C 10% — nagpapalilaw at nagpoprotekta mula sa oxidasyon',
+      amStep4: 'Huling kinakailangang hakbang — nagpoprotekta mula sa tropikal na UV',
+      pmStep1: 'Malalim na paglilinis — inaalis ang polusyon na naipon sa araw',
+      pmStep2: 'Nagpapanumbalik ng kahalumigmigan pagkatapos ng mahabang araw',
+      pmStep3: 'Retinol 0.5% — nagpapanibago at nagpapagaling nang malalim habang natutulog',
+      /* Results */
+      resultsLabel: 'Inaasahang mga Resulta',
+      resultsHeading: 'Ang iyong <em>glow</em> na paglalakbay',
+      resultsDesc: 'Ang mga resulta ay unti-unting lumalabas habang pinapanatili mo ang ritual — hakbang-hakbang, araw-araw.',
+      week2: 'Linggo 2',
+      week2Sub: 'Simula',
+      week2Body: 'Nagiging mas malambot at mas moisturized ang balat. Nagsisimulang pantay ang tono. Halatang napalakas ang hadlang na nagpoprotekta.',
+      badge2: 'Nagsisimulang Mag-glow',
+      week4: 'Linggo 4',
+      week4Sub: 'Kasukdulan ng Pagbabago',
+      week4Body: 'Mas pantay na ang pigmentasyon. Makabuluhang lumabo ang madilim na batik. Napabuti ang maliliit na kulubot. Mukhang maliwanag at mataba ang balat.',
+      badge4: 'Kasukdulan ng Liwanag',
+      week8: 'Linggo 8',
+      week8Sub: 'Napapanatiling mga Resulta',
+      week8Body: 'Ganap na nabago ang balat — maliwanag, pantay, malusog. Malinaw na napabuti ang kulubot. Natural na glow mula sa loob.',
+      badge8: 'Pangmatagalang Glow',
+      /* Register */
+      registerLabel: 'Mag-register para sa Konsultasyon',
+      registerHeading: 'Simulan ang<br><em>iyong glow na paglalakbay</em>',
+      registerDesc: 'Mag-iwan ng iyong impormasyon — ang aming mga eksperto ay makikipag-ugnayan sa iyo para sa payo sa tamang ritual at magpapadala ng mga espesyal na alok na para lamang sa iyo.',
+      benefit1: 'Libreng 1:1 konsultasyon sa balat kasama ang isang eksperto',
+      benefit2: 'Eksklusibong alok para sa iyong unang order',
+      benefit3: 'Personalisadong gabay sa ritual',
+      benefit4: 'Subaybayan ang iyong glow na pag-unlad kasama ang eksperto',
+      registerBoxTitle: 'Kumuha ng Libreng Konsultasyon',
+      rNamePh: 'Buong pangalan',
+      rPhonePh: 'Numero ng telepono',
+      rEmailPh: 'Ang iyong email',
+      registerSubmit: 'Simulan ang Glow Ritual',
+      registerError: 'Mangyaring punan ang lahat ng kinakailangang impormasyon nang tama.',
+      registerNote: 'Ang iyong impormasyon ay ganap na ligtas. Walang spam.',
+      registerSuccess: 'Salamat! Ang aming eksperto ay makikipag-ugnayan sa iyo sa loob ng 24 na oras.',
+      /* Footer */
+      footerTagline: 'Premium na ritwal sa pangangalaga ng balat para sa mga mature na babae na may edad 28–45. Maliwanag — Muling Pagbabata — Protektado.',
+      footerProducts: 'Mga Produkto',
+      footerSupport: 'Suporta',
+      footerLinkConsult: 'Libreng Konsultasyon',
+      footerLinkFormula: 'Pormula',
+      footerLinkGuide: 'Paano Gamitin',
+      footerLinkBuy: 'Bumili Ngayon',
+      footerCopy: '© 2025 LUMI-GLOW. Lahat ng karapatan ay nakalaan.'
+    }
+  };
+
+  /* ── Apply language ── */
+  function applyLang(lang) {
+    var t = translations[lang];
+    if (!t) return;
+
+    /* Text content */
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    /* innerHTML (for keys with <em>/<br> markup) */
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    /* Placeholders */
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+
+    /* aria-label */
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-aria-label');
+      if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
+    });
+
+    /* Update html lang attribute */
+    document.documentElement.lang = lang === 'fil' ? 'fil' : 'en';
+
+    /* Update button states */
+    var btnEN = document.getElementById('langEN');
+    var btnFIL = document.getElementById('langFIL');
+    if (btnEN && btnFIL) {
+      btnEN.classList.toggle('active', lang === 'en');
+      btnFIL.classList.toggle('active', lang === 'fil');
+      btnEN.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+      btnFIL.setAttribute('aria-pressed', lang === 'fil' ? 'true' : 'false');
+    }
+
+    /* Persist */
+    try { localStorage.setItem('lumiglow_lang', lang); } catch(e) {}
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+  }
+
+  /* ── Init language from localStorage or default to 'en' ── */
+  (function () {
+    var saved = 'en';
+    try { saved = localStorage.getItem('lumiglow_lang') || 'en'; } catch(e) {}
+    if (saved !== 'en' && saved !== 'fil') saved = 'en';
+    applyLang(saved);
+  })();
+
   /* ── Navbar scroll behaviour ── */
   var navbar = document.getElementById('navbar');
   var scrollTicking = false;
@@ -1626,7 +1945,7 @@
     var err   = document.getElementById('registerError');
 
     var emailValid = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
-    var phoneValid = /^(0|\+84)[0-9]{9}$/.test(phone);
+    var phoneValid = /^\+?[0-9]{7,15}$/.test(phone);
 
     if (!name || !phoneValid || !emailValid) {
       err.style.display = 'block';
