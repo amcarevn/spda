@@ -511,7 +511,15 @@
       z-index: 0;
     }
     .pricing-retail-frame > * { position: relative; z-index: 1; }
-    .retail-frame-header { margin-bottom: 18px; }
+    .retail-slider-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .retail-frame-header { flex: 1; min-width: min(100%, 320px); }
     .retail-frame-eyebrow {
       font-family: 'DM Sans', sans-serif;
       font-size: .68rem;
@@ -534,19 +542,60 @@
       margin-top: 4px;
       font-family: 'DM Sans', sans-serif;
     }
+    .retail-slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .retail-slider-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(63,58,51,.12);
+      background: rgba(255,255,255,.72);
+      color: #3f3a33;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .retail-slider-btn:hover:not(:disabled) {
+      background: #c9a46a;
+      color: #fff;
+      border-color: #c9a46a;
+      transform: translateY(-1px);
+    }
+    .retail-slider-btn:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+      transform: none;
+    }
 
     /* Card track — horizontal scroll */
     .retail-card-track {
       display: flex;
       gap: 12px;
       overflow-x: auto;
+      scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      overscroll-behavior-x: contain;
       margin: 0 -4px;
       padding: 0 4px 8px;
+      cursor: grab;
     }
     .retail-card-track::-webkit-scrollbar { display: none; }
+    .retail-card-track.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      user-select: none;
+    }
+    .retail-card-track.is-dragging .retail-card {
+      pointer-events: none;
+    }
 
     /* Each product card */
     .retail-card {
@@ -652,8 +701,27 @@
     }
 
     /* Retail total row */
-    .retail-total-row {
+    .retail-slider-footer {
       margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .retail-slider-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .72rem;
+      color: rgba(63,58,51,.56);
+      font-family: 'DM Sans', sans-serif;
+    }
+    .retail-slider-note i {
+      color: #9caf88;
+      font-size: .78rem;
+    }
+    .retail-total-row {
       text-align: right;
       padding-right: 4px;
     }
@@ -1075,6 +1143,9 @@
       .formula-band { grid-template-columns: 1fr; }
       .ritual-num { font-size: 2.6rem; min-width: 48px; }
       .ritual-item { gap: 16px; }
+      .retail-slider-topbar,
+      .retail-slider-footer { align-items: flex-start; }
+      .retail-slider-controls { width: 100%; justify-content: flex-start; }
       /* Retail cards: 1.2 cards visible on mobile for swipe effect */
       .retail-card { flex: 0 0 83%; }
       .pricing-sticky-cta { display: flex; }
@@ -1286,14 +1357,24 @@
 
       <!-- TOP: Retail Selection frame -->
       <div class="pricing-retail-frame reveal">
-        <div class="retail-frame-header">
-          <div class="retail-frame-eyebrow" data-i18n="retailEyebrow">Retail Selection · Individual Products</div>
-          <div class="retail-frame-title" data-i18n-html="retailTitle">Choose Each Product<br><em>by your needs</em></div>
-          <p class="retail-frame-sub" data-i18n="retailSub">5 independent products, each step with a unique purpose.</p>
+        <div class="retail-slider-topbar">
+          <div class="retail-frame-header">
+            <div class="retail-frame-eyebrow" data-i18n="retailEyebrow">Retail Selection · Individual Products</div>
+            <div class="retail-frame-title" data-i18n-html="retailTitle">Choose Each Product<br><em>by your needs</em></div>
+            <p class="retail-frame-sub" data-i18n="retailSub">5 independent products, each step with a unique purpose.</p>
+          </div>
+          <div class="retail-slider-controls" aria-label="Retail slider controls">
+            <button type="button" class="retail-slider-btn" data-retail-scroll="prev" data-i18n-aria-label="retailPrevAria" aria-label="Scroll to previous products">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button type="button" class="retail-slider-btn" data-retail-scroll="next" data-i18n-aria-label="retailNextAria" aria-label="Scroll to next products">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Horizontal card track -->
-        <div class="retail-card-track" role="list">
+        <div class="retail-card-track" id="retailCardTrack" role="list" tabindex="0">
 
           <div class="retail-card" role="listitem">
             <div class="retail-card-img retail-card-img--photo">
@@ -1357,9 +1438,15 @@
 
         </div>
 
-        <div class="retail-total-row">
-          <span class="pricing-total-lbl" data-i18n="retailTotalLbl">Retail Total</span>
-          <span class="pricing-total-val">3.450.000đ</span>
+        <div class="retail-slider-footer">
+          <div class="retail-slider-note">
+            <i class="fas fa-arrows-left-right"></i>
+            <span data-i18n="retailScrollHint">Drag or swipe horizontally to explore each product.</span>
+          </div>
+          <div class="retail-total-row">
+            <span class="pricing-total-lbl" data-i18n="retailTotalLbl">Retail Total</span>
+            <span class="pricing-total-val">3.450.000đ</span>
+          </div>
         </div>
       </div>
 
@@ -1667,6 +1754,9 @@
       retailEyebrow: 'Retail Selection · Individual Products',
       retailTitle: 'Choose Each Product<br><em>by your needs</em>',
       retailSub: '5 independent products, each step with a unique purpose.',
+      retailScrollHint: 'Drag or swipe horizontally to explore each product.',
+      retailPrevAria: 'Scroll to previous products',
+      retailNextAria: 'Scroll to next products',
       cleanserDesc: 'Deep gentle cleansing, keeps skin soft, moist and smooth.',
       tonerDesc: 'Balances skin and prepares it for optimal active absorption.',
       daySerumDesc: 'Brightens skin during the day, antioxidant, enhances natural glow.',
@@ -1782,6 +1872,9 @@
       retailEyebrow: 'Retail Selection · Indibidwal na Produkto',
       retailTitle: 'Pumili ng Bawat Produkto<br><em>ayon sa iyong pangangailangan</em>',
       retailSub: '5 independyenteng produkto, bawat hakbang ay may natatanging layunin.',
+      retailScrollHint: 'I-drag o i-swipe nang pahalang para makita ang bawat produkto.',
+      retailPrevAria: 'Mag-scroll sa mga nakaraang produkto',
+      retailNextAria: 'Mag-scroll sa mga susunod na produkto',
       cleanserDesc: 'Malalim na malambot na paglilinis, pinapanatiling malambot, basâ at maayos ang balat.',
       tonerDesc: 'Nagbabalanse ng balat at inihahanda ito para sa pinakamainam na pagsipsip ng aktibong sangkap.',
       daySerumDesc: 'Nagpapalilaw ng balat sa araw, antioxidant, nagpapalakas ng natural na glow.',
@@ -1933,6 +2026,76 @@
     });
   }, { threshold: 0.1 });
   revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+  /* ── Retail slider controls + drag scroll ── */
+  var retailTrack = document.getElementById('retailCardTrack');
+  var retailScrollBtns = document.querySelectorAll('[data-retail-scroll]');
+  if (retailTrack && retailScrollBtns.length) {
+    var retailPointerDown = false;
+    var retailStartX = 0;
+    var retailStartScroll = 0;
+
+    function getRetailScrollAmount() {
+      var firstCard = retailTrack.querySelector('.retail-card');
+      if (!firstCard) return retailTrack.clientWidth * 0.85;
+      return firstCard.getBoundingClientRect().width + 12;
+    }
+
+    function updateRetailButtons() {
+      var maxScroll = Math.max(retailTrack.scrollWidth - retailTrack.clientWidth - 4, 0);
+      retailScrollBtns.forEach(function (btn) {
+        var direction = btn.getAttribute('data-retail-scroll');
+        btn.disabled = direction === 'prev'
+          ? retailTrack.scrollLeft <= 4
+          : retailTrack.scrollLeft >= maxScroll;
+      });
+    }
+
+    retailScrollBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var direction = btn.getAttribute('data-retail-scroll') === 'prev' ? -1 : 1;
+        retailTrack.scrollBy({ left: direction * getRetailScrollAmount(), behavior: 'smooth' });
+      });
+    });
+
+    retailTrack.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      retailPointerDown = true;
+      retailStartX = e.clientX;
+      retailStartScroll = retailTrack.scrollLeft;
+      retailTrack.classList.add('is-dragging');
+      if (retailTrack.setPointerCapture) retailTrack.setPointerCapture(e.pointerId);
+    });
+
+    retailTrack.addEventListener('pointermove', function (e) {
+      if (!retailPointerDown) return;
+      retailTrack.scrollLeft = retailStartScroll - (e.clientX - retailStartX);
+    });
+
+    function endRetailDrag(e) {
+      if (!retailPointerDown) return;
+      retailPointerDown = false;
+      retailTrack.classList.remove('is-dragging');
+      if (e && retailTrack.releasePointerCapture && retailTrack.hasPointerCapture && retailTrack.hasPointerCapture(e.pointerId)) {
+        retailTrack.releasePointerCapture(e.pointerId);
+      }
+    }
+
+    retailTrack.addEventListener('pointerup', endRetailDrag);
+    retailTrack.addEventListener('pointercancel', endRetailDrag);
+    retailTrack.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    retailTrack.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      retailTrack.scrollBy({
+        left: (e.key === 'ArrowLeft' ? -1 : 1) * getRetailScrollAmount(),
+        behavior: 'smooth'
+      });
+    });
+    retailTrack.addEventListener('scroll', updateRetailButtons, { passive: true });
+    window.addEventListener('resize', updateRetailButtons);
+    updateRetailButtons();
+  }
 
   /* ── Order Popup ── */
   var overlay = document.getElementById('orderOverlay');
