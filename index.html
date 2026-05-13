@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,7 +20,7 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Playfair Display', serif; background: #FDFAF6; color: #2C1F18; line-height: 1.7; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #FDFAF6; color: #2C1F18; line-height: 1.7; overflow-x: hidden; }
     img { max-width: 100%; height: auto; display: block; }
 
     /* ===== DESIGN TOKENS ===== */
@@ -54,7 +54,7 @@
     h1 { font-size: clamp(3rem, 6vw, 5.5rem); }
     h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); }
     h3 { font-size: clamp(1.4rem, 2.2vw, 2rem); }
-    p  { font-size: clamp(.9rem, 1.4vw, 1rem); color: var(--text-mid); }
+    p  { font-size: clamp(.9rem, 1.4vw, 1rem); color: var(--text-mid); font-weight: 400; }
     h1, h2, h3, h4, p { overflow-wrap: break-word; }
 
     /* ===== LAYOUT ===== */
@@ -64,8 +64,8 @@
 
     /* ===== SECTION LABEL ===== */
     .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: .7rem; font-weight: 600; letter-spacing: .22em;
+      font-family: 'Inter', sans-serif;
+      font-size: .68rem; font-weight: 600; letter-spacing: .18em;
       text-transform: uppercase; color: var(--gold);
       display: flex; align-items: center; justify-content: center; gap: 12px;
       margin-bottom: 18px;
@@ -81,7 +81,7 @@
     .marquee-strip {
       background: var(--marquee-bg); color: var(--marquee-text);
       padding: 14px 0; overflow: hidden; white-space: nowrap;
-      font-family: 'Playfair Display', serif; font-size: .72rem;
+      font-family: 'Inter', sans-serif; font-size: .72rem;
       letter-spacing: .14em; text-transform: uppercase;
     }
     .marquee-track { display: inline-block; animation: marquee 28s linear infinite; }
@@ -111,8 +111,8 @@
     .nav-cta {
       background: var(--gold); color: var(--dark); border: none;
       border-radius: var(--r-xl); padding: 10px 28px;
-      font-family: 'Playfair Display', serif; font-size: .8rem; font-weight: 600;
-      letter-spacing: .06em; cursor: pointer; text-decoration: none;
+      font-family: 'Inter', sans-serif; font-size: .8rem; font-weight: 600;
+      letter-spacing: .04em; cursor: pointer; text-decoration: none;
       transition: background .25s, transform .2s;
     }
     .nav-cta:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-1px); }
@@ -147,8 +147,8 @@
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'Playfair Display', serif; font-size: .7rem;
-      font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+      font-family: 'Inter', sans-serif; font-size: .68rem;
+      font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 24px;
     }
     .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
@@ -168,7 +168,7 @@
       display: inline-flex; align-items: center; gap: 10px;
       background: linear-gradient(135deg, var(--gold), #9A7230);
       color: var(--dark); border: none; border-radius: var(--r-xl);
-      padding: 15px 36px; font-family: 'Playfair Display', serif;
+      padding: 15px 36px; font-family: 'Inter', sans-serif;
       font-size: .88rem; font-weight: 600; cursor: pointer; text-decoration: none;
       box-shadow: 0 8px 32px rgba(200,169,106,.45);
       transition: transform .25s, box-shadow .25s; letter-spacing: .04em;
@@ -187,7 +187,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       background: transparent; color: rgba(63,58,51,.75);
       border: 1px solid rgba(63,58,51,.22); border-radius: var(--r-xl);
-      padding: 15px 30px; font-family: 'Playfair Display', serif;
+      padding: 15px 30px; font-family: 'Inter', sans-serif;
       font-size: .88rem; font-weight: 400; cursor: pointer; text-decoration: none;
       transition: border-color .25s, color .25s;
     }
@@ -198,7 +198,7 @@
     .trust-pill {
       display: flex; align-items: center; gap: 7px;
       font-size: .75rem; color: rgba(63,58,51,.62);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .trust-pill i { color: var(--gold); }
 
@@ -234,9 +234,9 @@
       min-width: 180px;
     }
     .hero-price-float-label {
-      font-size: .65rem; font-weight: 500; letter-spacing: .14em;
+      font-size: .65rem; font-weight: 600; letter-spacing: .12em;
       text-transform: uppercase; color: var(--text-soft); margin-bottom: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .hero-price-float-main {
       font-family: 'Playfair Display', serif;
@@ -245,12 +245,12 @@
     .hero-price-float-sub { display: flex; align-items: center; gap: 8px; }
     .hero-price-orig {
       font-size: .75rem; color: var(--text-soft);
-      text-decoration: line-through; font-family: 'Playfair Display', serif;
+      text-decoration: line-through; font-family: 'Inter', sans-serif;
     }
     .hero-save-tag {
       background: var(--gold); color: var(--dark);
       border-radius: 99px; padding: 2px 10px;
-      font-size: .65rem; font-weight: 700; font-family: 'Playfair Display', serif;
+      font-size: .65rem; font-weight: 700; font-family: 'Inter', sans-serif;
     }
     .hero-steps-badge {
       position: absolute; top: -18px; right: -20px;
@@ -263,8 +263,8 @@
     }
     .hero-steps-label {
       font-size: .6rem; color: rgba(255,255,255,.5);
-      text-transform: uppercase; letter-spacing: .12em;
-      font-family: 'Playfair Display', serif; margin-top: 3px;
+      text-transform: uppercase; letter-spacing: .1em;
+      font-family: 'Inter', sans-serif; margin-top: 3px;
     }
 
     /* ===== STATS BAR ===== */
@@ -303,9 +303,9 @@
     .problem-left p { color: rgba(255,255,255,.5); font-size: .92rem; line-height: 1.85; max-width: 300px; }
     .problem-rule { width: 40px; height: 1px; background: var(--gold); margin: 22px 0; }
     .problem-eyebrow {
-      font-size: .68rem; font-weight: 600; letter-spacing: .2em;
+      font-size: .68rem; font-weight: 600; letter-spacing: .16em;
       text-transform: uppercase; color: var(--gold);
-      font-family: 'Playfair Display', serif; margin-bottom: 16px;
+      font-family: 'Inter', sans-serif; margin-bottom: 16px;
     }
     .pain-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .pain-card {
@@ -320,7 +320,7 @@
       font-size: 3rem; color: rgba(200,169,106,.2); line-height: 1; margin-bottom: 14px;
     }
     .pain-title {
-      font-family: 'Playfair Display', serif; font-size: .9rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 600;
       color: var(--white); margin-bottom: 8px;
     }
     .pain-body { font-size: .8rem; color: rgba(255,255,255,.42); line-height: 1.7; }
@@ -345,12 +345,12 @@
       font-size: 3.2rem; color: var(--gold-light); line-height: 1; margin-bottom: 18px;
     }
     .formula-cell-name {
-      font-family: 'Playfair Display', serif; font-size: .82rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600;
       color: var(--text); margin-bottom: 6px;
     }
     .formula-cell-conc {
-      font-size: .7rem; color: var(--gold); font-weight: 500;
-      font-family: 'Playfair Display', serif; margin-bottom: 10px; letter-spacing: .04em;
+      font-size: .7rem; color: var(--gold); font-weight: 600;
+      font-family: 'Inter', sans-serif; margin-bottom: 10px; letter-spacing: .04em;
     }
     .formula-cell-desc { font-size: .78rem; color: var(--text-soft); line-height: 1.65; }
 
@@ -377,9 +377,9 @@
     }
     .ritual-body { flex: 1; }
     .ritual-tag {
-      font-size: .67rem; font-weight: 600; letter-spacing: .2em;
+      font-size: .67rem; font-weight: 600; letter-spacing: .16em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .ritual-name { color: var(--white); margin-bottom: 12px; }
     .ritual-desc { font-size: .87rem; color: rgba(255,255,255,.48); line-height: 1.8; max-width: 600px; margin-bottom: 14px; }
@@ -390,7 +390,7 @@
     .ritual-chip {
       background: rgba(200,169,106,.1); border: 1px solid rgba(200,169,106,.18);
       color: var(--gold-light); border-radius: 99px;
-      padding: 4px 12px; font-size: .68rem; font-family: 'Playfair Display', serif;
+      padding: 4px 12px; font-size: .68rem; font-family: 'Inter', sans-serif;
     }
 
     /* ===== AM/PM ROUTINE ===== */
@@ -421,12 +421,12 @@
       width: 28px; height: 28px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: .65rem; font-weight: 700; flex-shrink: 0;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .routine-panel--am .rout-dot { background: var(--gold-light); color: var(--gold-dark); }
     .routine-panel--pm .rout-dot { background: rgba(200,169,106,.18); color: var(--gold); }
     .rout-name {
-      font-family: 'Playfair Display', serif; font-size: .9rem; font-weight: 600; margin-bottom: 3px;
+      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 600; margin-bottom: 3px;
     }
     .routine-panel--am .rout-name { color: var(--text); }
     .routine-panel--pm .rout-name { color: var(--white); }
@@ -455,8 +455,8 @@
     .results-cell:not(.results-cell--hero) .results-week { color: var(--text); }
     .results-cell--hero .results-week { color: var(--gold); }
     .results-week-sub {
-      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-      font-family: 'Playfair Display', serif; margin-bottom: 22px;
+      font-size: .68rem; letter-spacing: .13em; text-transform: uppercase;
+      font-family: 'Inter', sans-serif; margin-bottom: 22px;
     }
     .results-cell:not(.results-cell--hero) .results-week-sub { color: var(--text-soft); }
     .results-cell--hero .results-week-sub { color: rgba(255,255,255,.45); }
@@ -468,7 +468,7 @@
       background: rgba(200,169,106,.14); color: var(--gold);
       border-radius: 99px; padding: 4px 12px;
       font-size: .68rem; font-weight: 500; margin-top: 18px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
 
     /* ===== PRICING ===== */
@@ -534,9 +534,9 @@
     }
     .retail-frame-header { flex: 1; min-width: min(100%, 320px); }
     .retail-frame-eyebrow {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: .68rem;
-      letter-spacing: .22em;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: rgba(63,58,51,.52);
       margin-bottom: 4px;
@@ -553,7 +553,7 @@
       font-size: .78rem;
       color: rgba(63,58,51,.58);
       margin-top: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .retail-slider-controls {
       display: flex;
@@ -701,11 +701,11 @@
     }
     .retail-card-ingredient {
       font-size: .62rem;
-      letter-spacing: .1em;
+      letter-spacing: .08em;
       text-transform: uppercase;
       color: #9caf88;
       font-weight: 700;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       margin-bottom: 0;
     }
     .retail-card-price {
@@ -732,7 +732,7 @@
       gap: 8px;
       font-size: .72rem;
       color: rgba(63,58,51,.56);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .retail-slider-note i {
       color: #9caf88;
@@ -745,14 +745,14 @@
     .pricing-total-lbl {
       display: block;
       font-size: .67rem;
-      letter-spacing: .17em;
+      letter-spacing: .13em;
       text-transform: uppercase;
       color: rgba(63,58,51,.52);
       margin-bottom: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .pricing-total-val {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: .9rem;
       color: rgba(63,58,51,.56);
       text-decoration: line-through;
@@ -824,10 +824,10 @@
       border-radius: 999px;
       padding: 6px 16px;
       font-size: .68rem;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       font-weight: 600;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .combo-save-badge {
       display: inline-block;
@@ -843,10 +843,10 @@
     }
     .combo-eyebrow {
       font-size: .68rem;
-      letter-spacing: .2em;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: #9caf88;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       margin-bottom: 10px;
     }
     .combo-title { color: #3f3a33; margin-bottom: 8px; font-size: clamp(1.7rem, 3vw, 2.5rem); }
@@ -875,7 +875,7 @@
       font-size: .9rem;
       color: rgba(63,58,51,.52);
       text-decoration: line-through;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .combo-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
     .combo-chip {
@@ -885,7 +885,7 @@
       border-radius: 999px;
       padding: 5px 12px;
       font-size: .7rem;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .combo-btns { display: flex; flex-direction: column; gap: 12px; }
     .btn-combo-primary,
@@ -897,7 +897,7 @@
       border: none;
       border-radius: var(--r-xl);
       padding: 16px 34px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: .92rem;
       font-weight: 600;
       cursor: pointer;
@@ -915,7 +915,7 @@
       border: 1px solid rgba(201,164,106,.38);
       border-radius: var(--r-xl);
       padding: 14px 28px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: .88rem;
       cursor: pointer;
       text-decoration: none;
@@ -927,7 +927,7 @@
       text-align: center;
       font-size: .71rem;
       color: rgba(63,58,51,.56);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
     }
     .combo-guarantee i { color: #9caf88; margin-right: 4px; }
     .pricing-sticky-cta {
@@ -961,8 +961,8 @@
       color: #fff;
       font-size: .78rem;
       font-weight: 600;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: .04em;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: .03em;
       cursor: pointer;
     }
 
@@ -977,7 +977,7 @@
     .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 0; }
     .benefit-item {
       display: flex; align-items: center; gap: 12px;
-      font-size: .87rem; color: var(--text-mid); font-family: 'Playfair Display', serif;
+      font-size: .87rem; color: var(--text-mid); font-family: 'Inter', sans-serif;
     }
     .benefit-item i { color: var(--gold); flex-shrink: 0; }
     .register-box {
@@ -993,7 +993,7 @@
     .form-input {
       width: 100%; padding: 13px 20px;
       border: 1.5px solid var(--cream-warm); border-radius: var(--r-xl);
-      background: var(--pearl); font-family: 'Playfair Display', serif;
+      background: var(--pearl); font-family: 'Inter', sans-serif;
       font-size: .9rem; color: var(--text); outline: none;
       transition: border-color .25s;
     }
@@ -1003,21 +1003,21 @@
       width: 100%; padding: 15px 32px;
       background: linear-gradient(135deg, var(--gold), #9A7230);
       color: var(--dark); border: none; border-radius: var(--r-xl);
-      font-family: 'Playfair Display', serif; font-size: .95rem; font-weight: 600;
-      cursor: pointer; letter-spacing: .04em;
+      font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 600;
+      cursor: pointer; letter-spacing: .03em;
       box-shadow: 0 6px 28px rgba(200,169,106,.38);
       transition: transform .25s, box-shadow .25s; margin-top: 4px;
     }
     .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(200,169,106,.5); }
-    .form-note { font-size: .72rem; color: var(--text-soft); text-align: center; margin-top: 12px; font-family: 'Playfair Display', serif; }
+    .form-note { font-size: .72rem; color: var(--text-soft); text-align: center; margin-top: 12px; font-family: 'Inter', sans-serif; }
     .form-error-msg {
       font-size: .8rem; color: #c0392b; display: none;
-      margin-top: 6px; font-family: 'Playfair Display', serif;
+      margin-top: 6px; font-family: 'Inter', sans-serif;
     }
     .success-msg {
       display: none; background: var(--gold-pale); color: var(--gold-dark);
       border-radius: var(--r-md); padding: 20px; text-align: center;
-      font-weight: 500; font-family: 'Playfair Display', serif; margin-top: 16px;
+      font-weight: 500; font-family: 'Inter', sans-serif; margin-top: 16px;
     }
 
     /* ===== ORDER POPUP ===== */
@@ -1046,20 +1046,20 @@
     .order-input {
       width: 100%; padding: 12px 18px;
       border: 1.5px solid var(--cream-warm); border-radius: 99px;
-      background: var(--pearl); font-family: 'Playfair Display', serif;
+      background: var(--pearl); font-family: 'Inter', sans-serif;
       font-size: .9rem; outline: none; transition: border-color .2s;
     }
     .order-input:focus { border-color: var(--gold); }
     .order-submit {
       width: 100%; padding: 14px 20px; border: none; border-radius: 99px;
       background: linear-gradient(135deg, var(--gold), #9A7230);
-      color: var(--dark); font-family: 'Playfair Display', serif;
+      color: var(--dark); font-family: 'Inter', sans-serif;
       font-weight: 600; font-size: .92rem; cursor: pointer; transition: filter .2s;
     }
     .order-submit:hover { filter: brightness(1.06); }
     .order-error {
       font-size: .8rem; color: #c0392b;
-      display: none; text-align: center; font-family: 'Playfair Display', serif;
+      display: none; text-align: center; font-family: 'Inter', sans-serif;
     }
     .sr-only {
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -1074,8 +1074,8 @@
     .lang-btn {
       background: transparent; border: 1px solid rgba(200,169,106,.35);
       border-radius: var(--r-xl); padding: 5px 12px;
-      font-family: 'Playfair Display', serif; font-size: .72rem; font-weight: 600;
-      letter-spacing: .06em; color: var(--text-mid); cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600;
+      letter-spacing: .04em; color: var(--text-mid); cursor: pointer;
       transition: background .22s, color .22s, border-color .22s;
     }
     .lang-btn.active {
@@ -1100,8 +1100,8 @@
     .footer-brand-name em { color: var(--gold); font-style: normal; }
     .footer-tagline { font-size: .82rem; color: #fdfcfb; line-height: 1.75; max-width: 260px; }
     .footer-col-title {
-      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
-      color: #fdfcfb; font-family: 'Playfair Display', serif; margin-bottom: 16px;
+      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      color: #fdfcfb; font-family: 'Inter', sans-serif; margin-bottom: 16px;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .footer-links a { color: #fdfcfb; text-decoration: none; font-size: .84rem; transition: color .2s; }
